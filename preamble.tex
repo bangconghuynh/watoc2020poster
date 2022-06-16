@@ -1,0 +1,165 @@
+% !TeX program = lualatex
+% !TeX TXS-program:bibliography = txs:///biber
+
+
+% ========
+% Preamble
+% ========
+
+% -----------------------------
+% Font, theme, and Beamerposter
+% -----------------------------
+\usepackage[T1]{fontenc}
+
+\usepackage{lmodern}
+
+\usepackage[orientation=portrait, size=a0, scale=1.1]{beamerposter}
+
+\usetheme{BCHNottingham}
+
+\usecolortheme{BCHNottingham}
+
+\newcommand\bmmax{2}
+
+\usepackage{bm}
+
+
+% ---------
+% Chemistry
+% ---------
+\usepackage[version=4]{mhchem} % Further chemistry typesetting support
+
+
+% ----------------------
+% Scientific typesetting
+% ----------------------
+\usepackage{siunitx}
+\AtBeginDocument{\sisetup{math-rm=\mathrm, text-rm=\rmfamily}}
+
+
+% ----------------
+% Micro-typography
+% ----------------
+\usepackage[
+  activate={true,nocompatibility},%
+  final,%
+  tracking=true,%
+  factor=1100,%
+  stretch=10,%
+  shrink=10%
+]{microtype}
+\SetTracking{encoding={*}, shape=sc}{40} % Reduce spacing between sc characters
+\microtypecontext{spacing=nonfrench}
+
+
+% -------------
+% Maths support
+% -------------
+\usepackage{amsmath, amssymb, mathtools, mathrsfs, braket, amsthm} % packages for further maths support
+
+\usepackage{mleftright} %loading package for ensuring correct spacing before brackets
+\mleftright
+
+
+% ------------
+% Bibliography
+% ------------
+\usepackage[%
+  sorting=none,%
+  style=nature,%
+  articletitle=false,%
+  autocite=superscript,%
+  dateabbrev=false,%
+  url=false,%
+  isbn=false,%
+  backend=biber%
+]{biblatex}
+\addbibresource{bib/watoc2020poster.bib}
+
+
+% ------
+% Tables
+% ------
+\usepackage{booktabs, multirow, tabularx}
+
+\usepackage{lscape}
+
+
+% -----------------
+% Cross-referencing
+% -----------------
+\usepackage[capitalise, noabbrev]{cleveref} %loading package for enhanced cross-referencing; cleverref must be loaded after hyperref
+
+
+% ---------------------
+% Diagrams and captions
+% ---------------------
+\usepackage{graphicx}
+
+\usepackage{caption, subcaption}
+
+
+% pgfplots
+%% We need the external library to use the \tikzsetexternalprefix variable
+%% in all cases. However, we only need version compatibility and the rest of
+%% the libraries if we actually need to compile pikz diagrams.
+
+\usepackage{pgfplots} % pgfplots loads tikz automatically
+
+\usetikzlibrary{external}
+
+\tikzexternalize
+
+% \tikzexcmd is defined in the compilation call from the command line. See the Makefile.
+\newif\iftikzex
+\ifdefined\notikzex
+  \tikzexfalse
+\else
+  \tikzextrue
+\fi
+
+\iftikzex
+  \pgfplotsset{compat=1.17}
+
+  \usetikzlibrary{calc, luamath, positioning, pgfplots.groupplots}
+
+  \pgfplotscreateplotcyclelist{coloronly}{%
+    {red},%
+    {Blue},%
+    {black!60!green},%
+    {black!20!orange},%
+    {green!30!brown},%
+    {Blue!40!red},%
+    {black!60!Blue},%
+    {black!40!yellow},%
+    {red!50!pink},%
+    {green!70!Blue},%
+  }
+\fi
+
+% Tikzexternalize
+\makeatletter
+  \newcommand*{\useexternalfile}[1]{%
+    \iftikzex
+      \tikzsetnextfilename{tikzoutput/#1-output}%
+      \scalebox{1}{\input{\tikzexternal@filenameprefix#1.tikz}}
+    \else
+      \includegraphics[scale=1]{\tikzexternal@filenameprefix tikzoutput/#1-output.pdf}
+    \fi
+  }
+\makeatother
+
+\tikzsetexternalprefix{./tikz/}
+
+% -------
+% Lengths
+% -------
+
+% For N columns, choose \sepwidth and \colwidth such that
+% (N+1)*\sepwidth + N*\colwidth = \paperwidth
+\newlength{\sepwidth}
+\newlength{\colwidth}
+\setlength{\sepwidth}{0.0275\paperwidth}
+\setlength{\colwidth}{0.45875\paperwidth}
+
+\newcommand{\separatorcolumn}{\begin{column}{\sepwidth}\end{column}}
