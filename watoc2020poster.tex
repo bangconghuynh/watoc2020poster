@@ -1,3 +1,4 @@
+% !TeX document-id = {555063d9-c49e-4e5d-bcc1-5d7d130c26f4}
 % !TeX program = lualatex
 % !TeX TXS-program:bibliography = txs:///biber
 
@@ -9,11 +10,11 @@
 % Title
 % =====
 
-\title{Symmetry and Correlation in\\ Multiple Self-Consistent-Field Solutions\\ of Transition-Metal Complexes}
+\title{On Symmetry and Degeneracy\\ in the Construction of the Adiabatic Connection\\ Based on the Lieb Variational Principle}
 
-\author{Huynh, Bang C.\inst{1} \and Thom, Alex J. W.\inst{1}}
+\author{\underline{Bang C. Huynh}\inst{1} \and Andrew M. Teale\inst{1}}
 
-\institute[Chemistry, Cambridge, UK]{\inst{1} Department of Chemistry, University of Cambridge, United Kingdom}
+\institute[Chemistry, Nottingham, UK]{\inst{1} School of Chemistry, University of Nottingham, United Kingdom}
 
 % ====
 % Body
@@ -25,27 +26,68 @@
 \begin{columns}[t]
   \separatorcolumn
 
-  \begin{column}{\dimexpr(2\colwidth+\sepwidth)}
-    \begin{alertblock}{Low-Lying UHF Solutions and NOCI Wavefunctions of Model Octahedral \ce{[VF6]^{3-}}}
+  \begin{column}{\colwidth}
+    \begin{block}{1. The Exact Adiabatic Connection}
+      For an $\gls*{gen:Ne}$-electron system, consider a $\lambda$-parametrised electronic Hamiltonian
+      \begin{equation*}
+        \gls*{op:hamil}[_{\lambda}](\gls*{op:pot1e}_{\lambda})
+        =
+        \gls*{op:kin}
+        + \lambda \gls*{op:ee}
+        + \sum_{i=1}^{\gls*{gen:Ne}} \gls*{op:pot1e}_{\lambda}(\gls*{bas:spatialcoord}[_i]),
+        \quad
+        \textrm{where}
+        \quad
+        \gls*{op:ee} = \sum_{i=1}^{\gls*{gen:Ne}}\sum_{j>i}^{\gls*{gen:Ne}} \frac{1}{\lvert \gls*{bas:spatialcoord}[_i] - \gls*{bas:spatialcoord}[_j] \rvert},
+      \end{equation*}
+      that continuously links the \emphbold{LightSalmon}{physical system} to the \emphbold{LightSeaGreen}{non-interacting system}.
+
+      \tikzextrue
+      \tikzexternalenable
       \begin{figure}
-        \begin{subfigure}[t]{0.49\textwidth}
-          \centering
-          \useexternalfile{d2_MS1_singlenoci}
-        \end{subfigure}
-        \hfill
-        \begin{subfigure}[t]{0.49\textwidth}
-          \centering
-          \useexternalfile{d2_MS0_singlenoci}
-        \end{subfigure}
-        \captionsetup{justification=centering}
-        \caption{
-          Energy and symmetry of low-lying UHF solutions and NOCI wavefunctions constructed from them in octahedral \ce{[VF6]^3-}.\\[6pt]
-          \footnotesize \tikz[baseline]{\node[draw, Gray!60!Black, inner sep = 3pt, anchor = base] {$\mathrm{S}_{M_S}$};}: symmetry-conserved UHF set $\mathrm{S}$ with $\hat{S}_z$ eigenvalue $M_S$. \tikz[baseline]{\node[draw, Gray!60!Black, densely dotted, inner sep = 3pt, anchor = base] {$\mathrm{S}_{M_S}$};}: spatial or spin symmetry-broken UHF set $\mathrm{S}$ with $\hat{S}_z$ eigenvalue $M_S$.\\[6pt]
-          \footnotesize  $\Gamma[\mathrm{S}_{M_S}]$: a specific NOCI set of symmetry $\Gamma$ constructed from the UHF set $\mathrm{S}$ with $\hat{S}_z$ eigenvalue $M_S$.
-        }
-        \label{fig:d2_allnoci}
+        \centering
+        \useexternalfile{0.913}{0}{0}{acdiagram}
+        \label{fig:acdiagram}
       \end{figure}
-    \end{alertblock}
+      \tikzexternaldisable
+      \tikzexfalse
+
+      The \emphbold{Red}{potential $\gls*{op:pot1e}_{\lambda}$} is chosen for $\gls*{op:hamil}[_{\lambda}]$ to admit the same \emphbold{Red}{ground density $\gls*{den:ground}$} as $\gls*{op:hamil}[_{1}]$ via the \emphbold{red}{ground density matrix $\gls*{op:denen}[_{\lambda}](\gls*{den:ground})$}.
+
+      The \emphbold{Blue}{adiabatic connection} is defined by $\symcal{W}_{\lambda}(\gls*{den:ground}) = \tr \gls*{op:denen}[_{\lambda}](\gls*{den:ground}) \gls*{op:ee}$, which we calculate accurately for small systems to form approximate models for larger systems.
+    \end{block}
+  \end{column}
+
+  \separatorcolumn
+
+  \begin{column}{\colwidth}
+    \begin{block}{2. The Lieb Variational Principle}
+      Consider the space of densities $\gls*{struct:denspace}$ and its dual, the space of potentials $\gls*{struct:potspace}$:
+      \begin{equation*}
+        \gls*{struct:denspace} = L^{3}(\symbb{R}^3) \cap L^{1}(\symbb{R}^3),\quad
+        \gls*{struct:potspace} = L^{3/2}(\symbb{R}^3) + L^{\infty}(\symbb{R}^3).
+      \end{equation*}
+      For every $\lambda$ along the adiabatic connection, given a \emphbold{Blue}{wavefunction method M} to compute the \emphbold{Red}{M-ground energy $E^{\symup{M}}_{\lambda}(\gls*{op:pot1e})$} of $\gls*{op:hamil}[_{\lambda}](\gls*{op:pot1e})$ and the M-reference density $\gls*{den:ground}[^{\symup{M}}_1] \in \gls*{struct:denspace}$, by finding the \emphbold{Red}{Lieb universal functional}
+      \begin{equation*}
+        F^{\symup{M}}_{\lambda}(\gls*{den:ground}[^{\symup{M}}_1])
+          = \sup_{\gls*{op:pot1e} \in \gls*{struct:potspace}}
+          \,\left[%
+            E^{\symup{M}}_{\lambda}(\gls*{op:pot1e})
+            - \int \gls*{op:pot1e}(\gls*{bas:spatialcoord}) \gls*{den:ground}[^{\symup{M}}_1](\gls*{bas:spatialcoord}) \ \symup{d} \gls*{bas:spatialcoord}%
+          \right]
+          \equiv \sup_{\gls*{op:pot1e} \in \gls*{struct:potspace}}
+          G^{\symup{M}}_{\lambda}(\gls*{op:pot1e}; \gls*{den:ground}[^{\symup{M}}_1]),
+      \end{equation*}
+      one obtains the \emphbold{Red}{M-optimal potential $\gls*{op:pot1e}^{\symup{M}}_{\lambda}$} that supports $\gls*{den:ground}^{\symup{M}}_{\lambda}$ as its ground density.
+
+      The higher the quality of the wavefunction method M:
+      \begin{itemize}
+        \item the better $\gls*{den:ground}[^{\symup{M}}_1]$ approximates the true reference density $\gls*{den:ground}$;
+        \item the lower the Lieb-variational errors $\lVert \gls*{den:ground}^{\symup{M}}_{\lambda} - \gls*{den:ground}[^{\symup{M}}_1] \rVert_p$ where $1 \le p \le 3$; and
+        \item the better $\gls*{op:pot1e}^{\symup{M}}_{\lambda}$ approximates the true potential $\gls*{op:pot1e}_{\lambda}$.
+      \end{itemize}
+
+    \end{block}
   \end{column}
 
   \separatorcolumn
@@ -54,152 +96,264 @@
 \begin{columns}[t]
   \separatorcolumn
 
-  \begin{column}{\colwidth}
+  \begin{column}{\dimexpr(2\colwidth+\sepwidth)}
+    \begin{alertblock}{3. Challenges of Degenerate Systems}
+      Consider a Hamiltonian $\gls*{op:hamil}[_{\lambda}](\gls*{op:pot1e})$ having a \emphbold{Red}{symmetry group $\gls*{struct:gengroup}_{\lambda}(\gls*{op:pot1e})$} and admitting a \emphbold{Blue}{degenerate ground wavefunction $\gls*{wf:ground}[^{\symup{M}}_{\lambda}](\gls*{op:pot1e})$} with energy $E^{\symup{M}}_{\lambda}(\gls*{op:pot1e})$ and density $\gls*{den:ground}[_{\lambda}^{\symup{M}}](\gls*{bas:spatialcoord}; \gls*{op:pot1e})$.
 
-    \begin{block}{Introduction}
-      Transition-metal complexes are \textbf{\color{Blue} strongly correlated} as they have many low-energy electronic states that exhibit \textbf{\color{Blue} high degrees of degeneracy}. \Cref{fig:corrTSd2} gives such states for octahedral $d^2$ as an example.
+      \begin{columns}[t]
+        \begin{column}{\dimexpr(.65\colwidth)}
+          \centering
+          \begin{orangehighlightbox}[height=15cm]{Well-defined gradient?}
+            The Lieb optimisation procedure to obtain the M-optimal potential $\gls*{op:pot1e}^{\symup{M}}_{\lambda}$ requires the functional derivative
+            \begin{equation*}
+              \frac{%
+                \delta G^{\symup{M}}_{\lambda}(\gls*{op:pot1e}; \gls*{den:ground}[^{\symup{M}}_1])%
+              }{%
+                \delta \gls*{op:pot1e}(\gls*{bas:spatialcoord})%
+              }
+              = \textcolor{Red}{%
+                \frac{%
+                  \delta E^{\symup{M}}_{\lambda}(\gls*{op:pot1e})%
+                }{%
+                  \delta \gls*{op:pot1e}(\gls*{bas:spatialcoord})%
+                }%
+              } - \gls*{den:ground}[^{\symup{M}}_1](\gls*{bas:spatialcoord}).
+            \end{equation*}
+            As $\gls*{den:ground}[_{\lambda}^{\symup{M}}](\gls*{bas:spatialcoord}; \gls*{op:pot1e})$ is invariant only under a proper subgroup of $\gls*{struct:gengroup}_{\lambda}(\gls*{op:pot1e})$, the functional derivative $\textcolor{Red}{%
+              \delta E^{\symup{M}}_{\lambda}(\gls*{op:pot1e}) / \delta \gls*{op:pot1e}(\gls*{bas:spatialcoord})%
+            }$ is \emphbold{Blue}{not unique}:
+            \begin{equation*}
+              \textcolor{Red}{%
+                \frac{%
+                  \delta E^{\symup{M}}_{\lambda}(\gls*{op:pot1e})%
+                }{%
+                  \delta \gls*{op:pot1e}(\gls*{bas:spatialcoord})%
+                }%
+              } =
+              \sum_{i=1}^{\lvert\gls*{struct:gengroup}_{\lambda}(\gls*{op:pot1e})\rvert}
+                c_i
+                \hat{g}_i
+                \gls*{den:ground}[_{\lambda}^{\symup{M}}](\gls*{bas:spatialcoord}; \gls*{op:pot1e}),
+              \quad
+              g_i \in \gls*{struct:gengroup}_{\lambda}(\gls*{op:pot1e}),
+              \ c_i \ge 0,
+              \ \sum_{i=1}^{\lvert\gls*{struct:gengroup}_{\lambda}(\gls*{op:pot1e})\rvert} c_i = 1.
+            \end{equation*}
+          \end{orangehighlightbox}
+        \end{column}
 
-        \begin{figure}
-          \begin{subfigure}[b]{0.49\textwidth}
-            \centering
-            \useexternalfile{corrd2}
-            \caption{Correlation diagram (not to scale)}
-          \end{subfigure}
-          \hfill
-          \begin{subfigure}[b]{0.49\textwidth}
-            \centering
-            \useexternalfile{TSd2}
-            \caption{Tanabe--Sugano diagram}
-          \end{subfigure}
-          \caption{All electronic terms of a true $d^2$ system in an octahedral field.}
-          \label{fig:corrTSd2}
-        \end{figure}
+        \begin{column}{\dimexpr(.65\colwidth)}
+          \centering
+          \begin{violethighlightbox}[height=15cm]{Symmetry of potential?}
+            At all $\lambda$, the M-optimal potential $\gls*{op:pot1e}[^{\symup{M}}_{\lambda}]$ determines the symmetry group of the Hamiltonian:
+            \begin{alignat*}{4}
+              \lambda = 1:   &\quad \gls*{op:pot1e}[_{\symup{ext}}] &&\mapsto \gls*{struct:gengroup}_1 \quad &&\textrm{physical system},\\
+              \lambda \ne 1: &\quad \gls*{op:pot1e}[^{\symup{M}}_{\lambda}] &&\mapsto \gls*{struct:gengroup}_{\lambda}(\gls*{op:pot1e}[^{\symup{M}}_{\lambda}]) \quad &&\textrm{auxiliary systems}.
+            \end{alignat*}
+            Is \emphbold{Blue}{equality} in the following condition
+            \begin{equation*}
+              \gls*{struct:gengroup}_1 \ge \gls*{struct:gengroup}_{\lambda}(\gls*{op:pot1e}[^{\symup{M}}_{\lambda}]),
+              \quad
+              \lambda \ne 1
+            \end{equation*}
+            necessary for $\gls*{op:pot1e}[^{\symup{M}}_{\lambda}] \in \gls*{struct:potspace}$?
+            In other words, should the \emphbold{Red}{auxiliary systems} \emphbold{Blue}{respect} the symmetry of the \emphbold{Red}{physical system}?
+          \end{violethighlightbox}
+        \end{column}
 
-      The non-linear HF equations for these complexes therefore admit \textbf{\color{Blue} multiple low-lying solutions} that are \textbf{\color{Blue} degenerate} or \textbf{\color{Blue} nearly degenerate}.
-
-      We have located these solutions using \textbf{\color{Blue} SCF metadynamics} and investigated their \textbf{\color{red} symmetry properties} in a model octahedral $d^2$ system, \ce{[VF6]^{3-}} (\cref{fig:d2_allnoci}).
-      \end{block}
-
-    \begin{alertblock}{Symmetry Breaking in HF}
-      Degenerate eigenfunctions of the spinless Hamiltonian \emph{must} transform as a single irreducible representation (irrep) of the underlying point group $\mathcal{B}$, the spin rotation group $\mathsf{SU}(2)$, or the time reversal group $\mathcal{T}$.
-
-      HF wavefunctions do not have to obey this due to their approximate nature. Thus, consider a set of degenerate HF solutions %
-        $\mathrm{S} =
-          \left\lbrace
-            \prescript{w}{}{\Psi} %
-            \ | \ %
-            w = 1, 2, \ldots %
-          \right\rbrace%
-        $ %
-      and a particular group $\mathcal{G}$:
-        \begin{itemize}
-          \item if $\mathrm{S}$ spans a \textbf{\color{Blue} single irrep} in $\mathcal{G}$, then $\mathrm{S}$ is \textbf{\color{red} symmetry-conserved} in $\mathcal{G}$;
-          \item if $\mathrm{S}$ spans \textbf{\color{Blue} multiple
-          irreps} in $\mathcal{G}$, then $\mathrm{S}$ is \textbf{\color{red} symmetry-broken} in $\mathcal{G}$.
-        \end{itemize}
-
-      HF solutions break symmetry to become lower in energy and possibly recover some electron correlation. \textbf{\color{Blue} Restoring symmetry} of symmetry-broken HF solutions allows us to form \textbf{\color{red} physically meaningful wavefunctions} while \textbf{\color{red} incorporating said correlation}.
+        \begin{column}{\dimexpr(.65\colwidth)}
+          \centering
+          \begin{greenhighlightbox}[height=15cm]{Guarantee of $\symbfit{v}$-representability?}
+            The existence of the adiabatic connection $\symcal{W}_{\lambda}(\gls*{den:gen})$ requires the \emphbold{Red}{reference density $\gls*{den:gen}$} to be \emphbold{Red}{$v$-representable $\forall \lambda \in \interval{0}{1}$}.
+            However, general $v$-representability conditions for $\gls*{den:gen} \in \gls*{struct:denspace}$ are not well-established.
+            In particular:
+            \begin{itemize}
+              \item Is $\gls*{den:ground}[^{\symup{M}}_1]$ pure-state $v$-representable $\forall \lambda \in \interval{0}{1}$?
+              \item Is the ensemble density
+              \begin{equation*}
+                \gls*{den:ground}[^{\symup{M}}_{1, \symup{en}}] =
+                \frac{1}{\lvert \gls*{struct:gengroup}_1 \rvert}
+                \sum_{i=1}^{\lvert \gls*{struct:gengroup}_1 \rvert}
+                \hat{g}_i \gls*{den:ground}[^{\symup{M}}_1]
+              \end{equation*}
+              ensemble-state $v$-representable $\forall \lambda \in \interval{0}{1}$?
+            \end{itemize}
+%            Consider the pure-state degenerate density $\gls*{den:ground}[^{\symup{M}}_1]$.
+%            \begin{enumerate}
+%              \item Is $\gls*{den:ground}[^{\symup{M}}_1]$ non-interacting pure-state $v$-representable?
+%              \item Is $\gls*{den:ground}[^{\symup{M}}_1]$ non-interacting ensemble-state $v$-representable?
+%            \end{enumerate}
+%
+%            Consider now the following ensemble-state density $\gls*{den:ground}[^{\symup{M}}_{1, \symup{en}}]$:
+%            \begin{equation*}
+%              \gls*{den:ground}[^{\symup{M}}_{1, \symup{en}}] =
+%              \frac{1}{\lvert \gls*{struct:gengroup}_1 \rvert}
+%              \sum_{i=1}^{\lvert \gls*{struct:gengroup}_1 \rvert}
+%              \hat{g}_i \gls*{den:ground}[^{\symup{M}}_1].
+%            \end{equation*}
+%            \vspace{-1ex}
+%            \begin{enumerate}
+%              \setcounter{enumi}{2}
+%              \item Is $\gls*{den:ground}[^{\symup{M}}_{1, \symup{en}}]$ non-interacting ensemble-state $v$-representable?
+%            \end{enumerate}
+          \end{greenhighlightbox}
+        \end{column}
+      \end{columns}
     \end{alertblock}
-
-    \begin{block}{Restoring Symmetry: Non-Orthogonal CI (NOCI)}
-      For a complete symmetry-broken set %
-        $\mathrm{S} =
-          \left\lbrace
-            \prescript{w}{}{\Psi} %
-            \ | \ %
-            w = 1, 2, \ldots %
-          \right\rbrace%
-        $, %
-      solving the generalised eigenvalue equation
-        \begin{equation*}
-          \boldsymbol{HA} = \boldsymbol{SAE} \quad %
-          \textsf{where} \quad %
-          \left(\boldsymbol{H}\right)_{wx} = %
-            \braket{\prescript{w}{}{\Psi}|\hat{\mathscr{H}}|\prescript{x}{}{\Psi}} \  %
-          \textsf{and} \  %
-          \left(\boldsymbol{S}\right)_{wx} = %
-            \braket{\prescript{w}{}{\Psi}|\prescript{x}{}{\Psi}} %
-        \end{equation*}
-      gives coefficients $A_{wm}$ such that the \textbf{\color{Blue} NOCI wavefunctions}
-        \begin{equation*}
-          \prescript{m}{}{\Phi} = \sum_{w} \prescript{w}{}{\Psi} A_{wm}
-        \end{equation*}
-      \textbf{\color{red} conserve symmetry} and can be used to approximate corresponding electronic terms.
-    \end{block}
-
-  \end{column}
-
-  \separatorcolumn
-
-  \begin{column}{\colwidth}
-
-    \begin{block}{UHF vs. NOCI: Jahn--Teller Distortion}
-      Consider the $T_{1g} \otimes e_g$ Jahn--Teller distortion in octaheral \ce{[VF6]^{3-}}. \Cref{fig:JT} shows that:
-        \begin{itemize}
-          \item the UHF $\mathrm{A}_1$ and $\mathrm{A}'_1$ solutions fail to exhibit the expected energy minima;
-          \item the $\prescript{3}{}{T}_{1g}[\mathrm{A}_1 \oplus \mathrm{A}'_1]$ \textbf{\color{Blue} NOCI wavefunctions} do \textbf{\color{Red} show the expected stabilisation} and give the \textbf{\color{Red} correct degeneracy splitting} upon symmetry descent.
-        \end{itemize}
-
-
-
-      \begin{figure}
-        \centering
-        \useexternalfile{A.JT.Eg.minimal}
-        \captionsetup{justification=centering}
-        \caption{
-          State energy in the $T_{1g} \otimes e_g$ Jahn--Teller distortion of octahedral \ce{[VF6]^{3-}}.\\[6pt]
-          \footnotesize Dashed curves: symmetry-broken UHF $\mathrm{A}_1$ or $\mathrm{A}'_1$ solutions. Solid curves: $\prescript{3}{}{T}_{1g}[\mathrm{A}_1 \oplus \mathrm{A}'_1]$ NOCI wavefunctions.}
-        \label{fig:JT}
-      \end{figure}
-    \end{block}
-
-    \begin{block}{Solution Topology: Euclidean Realisation of State Distances}
-      By realising the distance matrices between symmetry-broken HF solutions to give \textbf{\color{Blue} polytopes} showing their \textbf{\color{red} arrangements in Euclidean space} (\cref{fig:AAdashpolytopes}), we hope to gain insight into the nature of their symmetry breaking.
-
-      \begin{figure}
-        \begin{subfigure}[b]{0.3\textwidth}
-          \centering
-          \useexternalfile{AAdashpolytope.Egu.elongation.g8}
-          \caption{$S_2 = \SI{-0.04}{\angstrom}$}
-        \end{subfigure}
-        \hfill
-        \begin{subfigure}[b]{0.3\textwidth}
-          \centering
-          \useexternalfile{AAdashpolytope.Egu.compression.g0}
-          \caption{$S_2 = 0$}
-        \end{subfigure}
-        \hfill
-        \begin{subfigure}[b]{0.3\textwidth}
-          \centering
-          \useexternalfile{AAdashpolytope.Egu.compression.g8}
-          \caption{$S_2 = \SI{0.04}{\angstrom}$}
-        \end{subfigure}
-        \caption{Three-dimensional projections of polytopes of $\mathrm{A}_1$ and $\mathrm{A}'_1$ solutions along the $e_{g}u$ distortion.}
-        \label{fig:AAdashpolytopes}
-      \end{figure}
-    \end{block}
-
-    \begin{alertblock}{In a Nutshell}
-      \begin{itemize}
-        \item There exist \textbf{\color{DarkGreen} many low-lying HF solutions} in transition-metal complexes.
-        \item Some solutions \textbf{\color{DarkGreen} break symmetry}, spin or spatial or both.
-        \item NOCI can \textbf{\color{DarkGreen} restore symmetry} to give \textbf{\color{DarkGreen} proper physical behaviours}, \textit{e.g.}, vibronic coupling.
-        \item There are \textbf{\color{DarkGreen} clear patterns} in symmetry breaking that need further understanding.
-      \end{itemize}
-    \end{alertblock}
-
-    \begin{block}{References}
-
-      \AtNextBibliography{\footnotesize}
-      \nocite{*}
-      \printbibliography[title=none]
-
-    \end{block}
-
   \end{column}
 
   \separatorcolumn
 \end{columns}
+
+%\begin{columns}[t]
+%  \separatorcolumn
+%
+%  \begin{column}{\colwidth}
+%
+%    \begin{block}{Introduction}
+%      Transition-metal complexes are \textbf{\color{Blue} strongly correlated} as they have many low-energy electronic states that exhibit \textbf{\color{Blue} high degrees of degeneracy}. \Cref{fig:corrTSd2} gives such states for octahedral $d^2$ as an example.
+%
+%        \begin{figure}
+%          \begin{subfigure}[b]{0.49\textwidth}
+%            \centering
+%            \useexternalfile{corrd2}
+%            \caption{Correlation diagram (not to scale)}
+%          \end{subfigure}
+%          \hfill
+%          \begin{subfigure}[b]{0.49\textwidth}
+%            \centering
+%            \useexternalfile{TSd2}
+%            \caption{Tanabe--Sugano diagram}
+%          \end{subfigure}
+%          \caption{All electronic terms of a true $d^2$ system in an octahedral field.}
+%          \label{fig:corrTSd2}
+%        \end{figure}
+%
+%      The non-linear HF equations for these complexes therefore admit \textbf{\color{Blue} multiple low-lying solutions} that are \textbf{\color{Blue} degenerate} or \textbf{\color{Blue} nearly degenerate}.
+%
+%      We have located these solutions using \textbf{\color{Blue} SCF metadynamics} and investigated their \textbf{\color{red} symmetry properties} in a model octahedral $d^2$ system, \ce{[VF6]^{3-}} (\cref{fig:d2_allnoci}).
+%      \end{block}
+%
+%    \begin{alertblock}{Symmetry Breaking in HF}
+%      Degenerate eigenfunctions of the spinless Hamiltonian \emph{must} transform as a single irreducible representation (irrep) of the underlying point group $\mathcal{B}$, the spin rotation group $\mathsf{SU}(2)$, or the time reversal group $\mathcal{T}$.
+%
+%      HF wavefunctions do not have to obey this due to their approximate nature. Thus, consider a set of degenerate HF solutions %
+%        $\mathrm{S} =
+%          \left\lbrace
+%            \prescript{w}{}{\Psi} %
+%            \ | \ %
+%            w = 1, 2, \ldots %
+%          \right\rbrace%
+%        $ %
+%      and a particular group $\mathcal{G}$:
+%        \begin{itemize}
+%          \item if $\mathrm{S}$ spans a \textbf{\color{Blue} single irrep} in $\mathcal{G}$, then $\mathrm{S}$ is \textbf{\color{red} symmetry-conserved} in $\mathcal{G}$;
+%          \item if $\mathrm{S}$ spans \textbf{\color{Blue} multiple
+%          irreps} in $\mathcal{G}$, then $\mathrm{S}$ is \textbf{\color{red} symmetry-broken} in $\mathcal{G}$.
+%        \end{itemize}
+%
+%      HF solutions break symmetry to become lower in energy and possibly recover some electron correlation. \textbf{\color{Blue} Restoring symmetry} of symmetry-broken HF solutions allows us to form \textbf{\color{red} physically meaningful wavefunctions} while \textbf{\color{red} incorporating said correlation}.
+%    \end{alertblock}
+%
+%    \begin{block}{Restoring Symmetry: Non-Orthogonal CI (NOCI)}
+%      For a complete symmetry-broken set %
+%        $\mathrm{S} =
+%          \left\lbrace
+%            \prescript{w}{}{\Psi} %
+%            \ | \ %
+%            w = 1, 2, \ldots %
+%          \right\rbrace%
+%        $, %
+%      solving the generalised eigenvalue equation
+%        \begin{equation*}
+%          \boldsymbol{HA} = \boldsymbol{SAE} \quad %
+%          \textsf{where} \quad %
+%          \left(\boldsymbol{H}\right)_{wx} = %
+%            \braket{\prescript{w}{}{\Psi}|\hat{\mathscr{H}}|\prescript{x}{}{\Psi}} \  %
+%          \textsf{and} \  %
+%          \left(\boldsymbol{S}\right)_{wx} = %
+%            \braket{\prescript{w}{}{\Psi}|\prescript{x}{}{\Psi}} %
+%        \end{equation*}
+%      gives coefficients $A_{wm}$ such that the \textbf{\color{Blue} NOCI wavefunctions}
+%        \begin{equation*}
+%          \prescript{m}{}{\Phi} = \sum_{w} \prescript{w}{}{\Psi} A_{wm}
+%        \end{equation*}
+%      \textbf{\color{red} conserve symmetry} and can be used to approximate corresponding electronic terms.
+%    \end{block}
+%
+%  \end{column}
+%
+%  \separatorcolumn
+%
+%  \begin{column}{\colwidth}
+%
+%    \begin{block}{UHF vs. NOCI: Jahn--Teller Distortion}
+%      Consider the $T_{1g} \otimes e_g$ Jahn--Teller distortion in octaheral \ce{[VF6]^{3-}}. \Cref{fig:JT} shows that:
+%        \begin{itemize}
+%          \item the UHF $\symup{A}_1$ and $\mathrm{A}'_1$ solutions fail to exhibit the expected energy minima;
+%          \item the $\prescript{3}{}{T}_{1g}[\mathrm{A}_1 \oplus \mathrm{A}'_1]$ \textbf{\color{Blue} NOCI wavefunctions} do \textbf{\color{Red} show the expected stabilisation} and give the \textbf{\color{Red} correct degeneracy splitting} upon symmetry descent.
+%        \end{itemize}
+%
+%
+%
+%      \begin{figure}
+%        \centering
+%        \useexternalfile{A.JT.Eg.minimal}
+%        \captionsetup{justification=centering}
+%        \caption{
+%          State energy in the $T_{1g} \otimes e_g$ Jahn--Teller distortion of octahedral \ce{[VF6]^{3-}}.\\[6pt]
+%          \footnotesize Dashed curves: symmetry-broken UHF $\mathrm{A}_1$ or $\mathrm{A}'_1$ solutions. Solid curves: $\prescript{3}{}{T}_{1g}[\mathrm{A}_1 \oplus \mathrm{A}'_1]$ NOCI wavefunctions.}
+%        \label{fig:JT}
+%      \end{figure}
+%    \end{block}
+%
+%    \begin{block}{Solution Topology: Euclidean Realisation of State Distances}
+%      By realising the distance matrices between symmetry-broken HF solutions to give \textbf{\color{Blue} polytopes} showing their \textbf{\color{red} arrangements in Euclidean space} (\cref{fig:AAdashpolytopes}), we hope to gain insight into the nature of their symmetry breaking.
+%
+%      \begin{figure}
+%        \begin{subfigure}[b]{0.3\textwidth}
+%          \centering
+%          \useexternalfile{AAdashpolytope.Egu.elongation.g8}
+%          \caption{$S_2 = \SI{-0.04}{\angstrom}$}
+%        \end{subfigure}
+%        \hfill
+%        \begin{subfigure}[b]{0.3\textwidth}
+%          \centering
+%          \useexternalfile{AAdashpolytope.Egu.compression.g0}
+%          \caption{$S_2 = 0$}
+%        \end{subfigure}
+%        \hfill
+%        \begin{subfigure}[b]{0.3\textwidth}
+%          \centering
+%          \useexternalfile{AAdashpolytope.Egu.compression.g8}
+%          \caption{$S_2 = \SI{0.04}{\angstrom}$}
+%        \end{subfigure}
+%        \caption{Three-dimensional projections of polytopes of $\mathrm{A}_1$ and $\mathrm{A}'_1$ solutions along the $e_{g}u$ distortion.}
+%        \label{fig:AAdashpolytopes}
+%      \end{figure}
+%    \end{block}
+%
+%    \begin{alertblock}{In a Nutshell}
+%      \begin{itemize}
+%        \item There exist \textbf{\color{DarkGreen} many low-lying HF solutions} in transition-metal complexes.
+%        \item Some solutions \textbf{\color{DarkGreen} break symmetry}, spin or spatial or both.
+%        \item NOCI can \textbf{\color{DarkGreen} restore symmetry} to give \textbf{\color{DarkGreen} proper physical behaviours}, \textit{e.g.}, vibronic coupling.
+%        \item There are \textbf{\color{DarkGreen} clear patterns} in symmetry breaking that need further understanding.
+%      \end{itemize}
+%    \end{alertblock}
+%
+%%    \begin{block}{References}
+%%
+%%      \AtNextBibliography{\footnotesize}
+%%      \nocite{*}
+%%      \printbibliography[title=none]
+%%
+%%    \end{block}
+%
+%  \end{column}
+%
+%  \separatorcolumn
+%\end{columns}
 \end{frame}
 
 \end{document}

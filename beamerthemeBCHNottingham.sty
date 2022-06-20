@@ -1,51 +1,94 @@
-% BCHCambridge theme based on Gemini theme
+% BCHNottingham theme based on Gemini theme
 % https://github.com/anishathalye/gemini
 
-% ====================
+% ============
 % Dependencies
-% ====================
+% ============
 
 \RequirePackage{exscale}
 \RequirePackage{ragged2e}
 \RequirePackage{changepage}
 \RequirePackage{fontspec}
 
-% ====================
+% =====
 % Fonts
-% ====================
+% =====
 
-\newfontfamily\Raleway{Raleway}[Ligatures=TeX]
-\newfontfamily\Lato{Lato}[Ligatures=TeX]
+\newfontfamily\Raleway{Raleway}[%
+  UprightFont=*-Regular,%
+  ItalicFont=*-Italic,%
+  BoldFont=*-Bold,%
+  BoldItalicFont=*-BoldItalic,%
+  Ligatures=TeX,%
+]
+\newfontfamily\Lato{Lato}[%
+  Ligatures=TeX,%
+]
 
 \usefonttheme{professionalfonts}
 
-\setsansfont{Lato}[
-    UprightFont=*-Light,
-    ItalicFont=*-LightItalic,
-    BoldFont=*-Regular,
-    BoldItalicFont=*-Italic,
-    Ligatures=TeX
+\setmainfont{Lato}[%
+  UprightFont=*-Regular,%
+  ItalicFont=*-Italic,%
+  BoldFont=*-Bold,%
+  BoldItalicFont=*-BoldItalic,%
+  Ligatures=TeX,%
+]
+\setsansfont{Lato}[%
+  UprightFont=*-Regular,%
+  ItalicFont=*-Italic,%
+  BoldFont=*-Bold,%
+  BoldItalicFont=*-BoldItalic,%
+  Ligatures=TeX,%
 ]
 
 \setbeamerfont{headline}{family=\Raleway}
-\setbeamerfont{headline title}{size=\huge,series=\bfseries}
-\setbeamerfont{headline author}{size=\large}
+\setbeamerfont{headline title}{size=\huge, series=\bfseries}
+\setbeamerfont{headline author}{size=\Large}
 \setbeamerfont{headline institute}{size=\normalsize}
 \setbeamerfont{footline}{family=\Raleway}
 \setbeamerfont{footline address}{size=\normalsize}
-\setbeamerfont{block title}{family=\Raleway,size=\large,series=\bfseries}
-\setbeamerfont{heading}{family=\Lato,series=\bfseries}
+\setbeamerfont{block title}{family=\Raleway, size=\LARGE, series=\bfseries}
+\setbeamerfont{block body}{size=\large}
+\setbeamerfont{heading}{family=\Lato, series=\bfseries}
 \setbeamerfont{caption}{size=\small}
+
+% ====================
+% Maths
+% ====================
+\usepackage[%
+  math-style=ISO,%
+  bold-style=ISO,%
+  warnings-off={mathtools-colon},%
+]{unicode-math}
+
+% Main maths font
+\setmathfont{Fira Math}
+
+% Missing glyph ranges
+\setmathfont{STIX Two Math}[%
+  range={scr, bfscr, cal, bfcal},%
+]
 
 % ====================
 % Macros
 % ====================
 
 \newcommand{\samelineand}{\qquad}
+\makeatletter
+  \def\beamer@andtitle{\unskip, } % replaces \and between author names (original definition is \quad)
+  \def\beamer@andinst{\quad} % replaces \and between institutions (original definition is \\[1em])
+\makeatother
+
+\newcommand*{\emphbold}[2]{%
+  \textbf{\color{#1}#2}%
+}
 
 % ====================
 % Elements
 % ====================
+% Line spacing
+\linespread{1.05}
 
 % List
 \makeatletter
@@ -56,19 +99,18 @@
 \makeatother
 
 % Itemize
-
 \setbeamertemplate{itemize item}{\raise0.5ex \hbox{\vrule width 0.5ex height 0.5ex}}
 \setbeamertemplate{itemize subitem}{\raise0.3ex \hbox{\vrule width 0.5ex height 0.5ex}}
 \setbeamertemplate{itemize subsubitem}{\raise0.2ex \hbox{\vrule width 0.5ex height 0.5ex}}
 
 % Enumerate
-
 \setbeamertemplate{enumerate item}{\insertenumlabel.}
 \setbeamertemplate{enumerate subitem}{\insertsubenumlabel.}
 \setbeamertemplate{enumerate subsubitem}{\insertsubsubenumlabel.}
 
 % Equation
-\setlength\belowdisplayshortskip{2ex}
+\setlength\abovedisplayskip{1.4ex}
+\setlength\belowdisplayskip{1.7ex}
 
 % Caption
 \setbeamerfont{caption name}{series=\bfseries}
@@ -99,15 +141,15 @@
 {
     \begin{beamercolorbox}{headline}
         \begin{columns}
-					\begin{column}{0.0275\paperwidth}
-					\end{column}
-					\begin{column}{0.130\paperwidth}
-						\begin{center}
-							\vskip4ex
-							\includegraphics[width=.7\linewidth]{images/qr.png}
-						\end{center}
-					\end{column}
-          \begin{column}{0.620\paperwidth}
+          \begin{column}{0.0275\paperwidth}
+          \end{column}
+          \begin{column}{0.095\paperwidth}
+            \begin{center}
+              \vskip4ex
+              \includegraphics[width=.7\linewidth]{images/qr.png}
+            \end{center}
+          \end{column}
+          \begin{column}{0.655\paperwidth}
               \usebeamerfont{headline}
               \vskip1ex
               \centering
@@ -115,16 +157,16 @@
               {\usebeamerfont{headline author}\usebeamercolor[fg]{headline author}\insertauthor\\[1ex]}
               {\usebeamerfont{headline institute}\usebeamercolor[fg]{headline institute}\insertinstitute\\[1ex]}
           \end{column}
-        	\begin{column}{0.195\paperwidth}
-        		\begin{center}
-        			\vskip4ex
-        			\includegraphics[width=.95\linewidth]{images/camlogoreversedcolour}
-        			\vskip4ex
-        			\includegraphics[width=.95\linewidth]{images/cam-trust-logo}
-        		\end{center}
-        	\end{column}
-        	\begin{column}{0.0275\paperwidth}
-        	\end{column}
+          \begin{column}{0.195\paperwidth}
+            \begin{center}
+              \vskip4ex
+              \includegraphics[width=.90\linewidth]{images/UoN2}
+              \vskip4ex
+              \includegraphics[width=.90\linewidth]{images/quest}
+            \end{center}
+          \end{column}
+          \begin{column}{0.0275\paperwidth}
+          \end{column}
         \end{columns}
         \vspace{3ex}
         \ifbeamercolorempty[bg]{headline rule}{}{
@@ -137,7 +179,7 @@
 % Block
 \setbeamertemplate{block begin}
 {
-    \begin{beamercolorbox}[colsep*=0ex,dp=2ex,center]{block title}
+    \begin{beamercolorbox}[colsep*=0ex, dp=2ex, center]{block title}
         \vskip0pt
         \usebeamerfont{block title}\insertblocktitle
         \vskip-1.25ex
@@ -148,20 +190,23 @@
     \vskip-0.5ex
     \begin{beamercolorbox}[colsep*=0ex]{block body}
     \justifying
+    \begin{adjustwidth}{.5ex}{.5ex}
     \setlength{\parskip}{1ex}
     \vskip-2ex
 }
 \setbeamertemplate{block end}
 {
+    \end{adjustwidth}
+    \vskip.5ex
     \end{beamercolorbox}
     \vskip0pt
-    \vspace*{2ex}
+    \vspace*{1ex}
 }
 
 % Alert Block
 \setbeamertemplate{block alerted begin}
 {
-    \begin{beamercolorbox}[colsep*=0ex,dp=2ex,center]{block alerted title}
+    \begin{beamercolorbox}[colsep*=0ex, dp=2ex, center]{block alerted title}
         \vskip0.5ex
         \usebeamerfont{block title}\insertblocktitle
         \vskip-1.25ex
@@ -172,31 +217,31 @@
     \vskip-0.5ex
     \begin{beamercolorbox}[colsep*=0ex]{block alerted body}
     \justifying
-    \begin{adjustwidth}{1ex}{1ex}
+    \begin{adjustwidth}{0.5ex}{0.5ex}
     \setlength{\parskip}{1ex}
     \vskip-2ex
 }
 \setbeamertemplate{block alerted end}
 {
     \end{adjustwidth}
-    \vskip1ex
+    \vskip0.5ex
     \end{beamercolorbox}
     \vskip0pt
-    \vspace*{2ex}
+    \vspace*{1ex}
 }
 
 %Footline
 \setbeamertemplate{footline}
 {
-	\begin{beamercolorbox}[wd=\paperwidth, colsep=0.5ex]{footline rule}
-%		\rule{0pt}{2pt}
-	\end{beamercolorbox}
-	\leavevmode%
-	\begin{beamercolorbox}[leftskip=1cm,rightskip=1cm]{footline}
-		\vskip1ex
-		{\usebeamerfont{footline address} \href{https://www.ch.cam.ac.uk/person/cbh31}{https://www.ch.cam.ac.uk/person/cbh31}}
-		\hfill
-		{\usebeamerfont{footline address}\href{mailto:cbh31@cam.ac.uk}{cbh31@cam.ac.uk}}
-		\vskip1ex
-	\end{beamercolorbox}
+  \begin{beamercolorbox}[wd=\paperwidth, colsep=0.5ex]{footline rule}
+%    \rule{0pt}{2pt}
+  \end{beamercolorbox}
+  \leavevmode%
+  \begin{beamercolorbox}[leftskip=1cm, rightskip=1cm]{footline}
+    \vskip1ex
+    {\usebeamerfont{footline address} \href{https://quest.codes}{https://quest.codes}}
+    \hfill
+    {\usebeamerfont{footline address}\href{mailto:bang.huynh@nottingham.ac.uk}{bang.huynh@nottingham.ac.uk}}
+    \vskip1ex
+  \end{beamercolorbox}
 }

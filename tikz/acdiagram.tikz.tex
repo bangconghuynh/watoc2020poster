@@ -1,0 +1,45 @@
+\ifdefined\boxsize
+  \setlength{\boxsize}{3.50cm}
+\else
+  \newlength{\boxsize}
+  \setlength{\boxsize}{3.50cm}
+\fi
+\begin{tikzpicture}[
+  decoration=snake,
+  line around/.style={decoration={pre length=#1, post length=#1, amplitude=0.8mm, segment length=2.5mm}}
+]
+  %
+  % lambda = 0
+  %
+  \coordinate (noninteracting) at (-2.75\boxsize, 0);
+  %% Box
+  \draw[fill=LightSeaGreen, fill opacity=.5, ultra thick] ($(noninteracting) + (-1.1\boxsize, -.85\boxsize)$) rectangle ($(noninteracting) + (+1.1\boxsize, +.85\boxsize)$);
+  \node[anchor=north west, scale=.75] at ($(noninteracting) + (-1.1\boxsize, +.85\boxsize)$) (lambda0) {$\lambda = 0$};
+  \node[anchor=north east, scale=.75] at ($(noninteracting) + (+1.1\boxsize, +.85\boxsize)$) (rho0) {$\gls*{den:ground}$};
+  \node[anchor=south east, scale=.75] at ($(noninteracting) + (+1.1\boxsize, -.85\boxsize)$) (v0) {$\gls*{op:pot1e}[_0] = \gls*{op:pot1e}[_s]$};
+  %% Electrons
+  \node[circle, fill=black, inner sep=4pt, label={[scale=.6]right:$e^-$}] at ($(noninteracting) + (0, -0.25\boxsize)$) (e1l0) {};
+  \node[circle, fill=black, inner sep=4pt, label={[scale=.6]right:$e^-$}] at ($(noninteracting) + (0.4\boxsize, 0.4\boxsize)$) (e2l0) {};
+  \node[circle, fill=black, inner sep=4pt, label={[scale=.6, inner sep=0pt]left:$e^-$}] at ($(noninteracting) + (-0.6\boxsize, 0.4\boxsize)$) (e3l0) {};
+  %
+  % lambda = 1
+  %
+  \coordinate (fullyinteracting) at (+2.75\boxsize, 0);
+  %% Box
+  \draw[fill=LightSalmon, fill opacity=.5, ultra thick] ($(fullyinteracting) + (-1.1\boxsize, -.85\boxsize)$) rectangle ($(fullyinteracting) + (+1.1\boxsize, +.85\boxsize)$);
+  \node[anchor=north west, scale=.75] at ($(fullyinteracting) + (-1.1\boxsize, +.85\boxsize)$) (lambda1) {$\lambda = 1$};
+  \node[anchor=north east, scale=.75] at ($(fullyinteracting) + (+1.1\boxsize, +.85\boxsize)$) (rho1) {$\gls*{den:ground}$};
+  \node[anchor=south east, scale=.75] at ($(fullyinteracting) + (+1.1\boxsize, -.85\boxsize)$) (v1) {$\gls*{op:pot1e}[_1] = \gls*{op:pot1e}[_{\symup{ext}}]$};
+  %% Electrons
+  \node[circle, fill=black, inner sep=4pt, label={[scale=.6]right:$e^-$}] at ($(fullyinteracting) + (0, -0.25\boxsize)$) (e1l1) {};
+  \node[circle, fill=black, inner sep=4pt, label={[scale=.6]right:$e^-$}] at ($(fullyinteracting) + (0.4\boxsize, 0.4\boxsize)$) (e2l1) {};
+  \node[circle, fill=black, inner sep=4pt, label={[scale=.6, inner sep=0pt]left:$e^-$}] at ($(fullyinteracting) + (-0.6\boxsize, 0.4\boxsize)$) (e3l1) {};
+  %% Electron interaction
+  \draw [decorate, line around=3pt, <->] (e1l1) -- (e2l1);
+  \draw [decorate, line around=3pt, <->] (e1l1) -- (e3l1);
+  \draw [decorate, line around=3pt, <->] (e2l1) -- (e3l1);
+  %
+  % AC
+  %
+  \draw[ultra thick] ($(noninteracting) + (1.1\boxsize, 0)$) .. controls (-2, -.5\boxsize) and (1, \boxsize) .. ($(fullyinteracting) + (-1.1\boxsize, 0)$) node[above, sloped, midway, inner sep=6pt, scale=.85] {fixed $\gls*{den:ground}$} node[below, sloped, midway, inner sep=10pt, scale=.85] {variable $\gls*{op:pot1e}_{\lambda}$};
+\end{tikzpicture}

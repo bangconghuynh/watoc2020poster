@@ -1,0 +1,592 @@
+% =======
+% General
+% =======
+\newglossaryentry{symbcat:gen}{%
+  name = {General},%
+  description = {\nopostdesc},%
+  sort = {A.gen},%
+}
+\newglossaryentry{gen:Ne}{%
+  name = {$N$},%
+  text = {N},%
+  description = {total number of electrons},%
+  sort = {1Ne},%
+  parent = symbcat:gen,%
+  type = symbols,%
+}
+\newglossaryentry{gen:Nn}{%
+  name = {$M$},%
+  text = {M},%
+  description = {total number of nuclei},%
+  sort = {2Nnuc},%
+  parent = symbcat:gen,%
+  type = symbols,%
+}
+\newglossaryentry{gen:Ndet}{%
+  name = {$N_{\symup{det}}$},%
+  text = {N_{\symup{det}}},%
+  description = {number of determinants in a set},%
+  sort = {3Ndet},%
+  parent = symbcat:gen,%
+  type = symbols,%
+}
+\newglossaryentry{gen:Nindept}{%
+  name = {$N_{\symup{indept}}$},%
+  text = {N_{\symup{indept}}},%
+  description = {number of linearly independent wavefunctions in a set},%
+  sort = {4Nindept},%
+  parent = symbcat:gen,%
+  type = symbols,%
+}
+% ==========
+% Structures
+% ==========
+\newglossaryentry{symbcat:struct}{%
+  name = {Structures},%
+  description = {\nopostdesc},%
+  sort = {B.struct},%
+}
+\newglossaryentry{struct:hilbert}{%
+  name = {$\symcal{H}$},%
+  text = {\symcal{H}},%
+  description = {generic Hilbert space},%
+  sort = {1H},%
+  parent = symbcat:struct,%
+  type = symbols,%
+}
+\newglossaryentry{struct:hilbert1e}{%
+  name = {$\gls*{struct:hilbert}[_1]$},%
+  text = {\gls*{struct:hilbert}[_1]},%
+  description = {one-electron complex Hilbert space},%
+  sort = {2H1e},%
+  parent = symbcat:struct,%
+  type = symbols,%
+}
+\newglossaryentry{struct:hilbertNe}{%
+  name = {$\gls*{struct:hilbert}[_{\gls*{gen:Ne}}]$},%
+  text = {\gls*{struct:hilbert}[_{\gls*{gen:Ne}}]},%
+  description = {$\gls*{gen:Ne}$-electron complex Hilbert space},%
+  sort = {3HNe},%
+  parent = symbcat:struct,%
+  type = symbols,%
+}
+\newglossaryentry{struct:hilbertNep}{%
+  name = {$\gls*{struct:hilbert}'_{\gls*{gen:Ne}}$},%
+  text = {\gls*{struct:hilbert}'_{\gls*{gen:Ne}}},%
+  description = {$\gls*{gen:Ne}$-electron complex Hilbert space},%
+  sort = {3HNe},%
+  parent = symbcat:struct,%
+  type = ignored,%
+}
+\newglossaryentry{struct:rep}{%
+  name = {$\Gamma$},%
+  text = {\Gamma},%
+  description = {subrepresentation of $\gls*{struct:hilbertNe}$},%
+  sort = {4group0.gamma},%
+  parent = symbcat:struct,%
+  type = symbols,%
+}
+\newglossaryentry{struct:gengroup}{%
+  name = {$\symcal{G}$},%
+  text = {\symcal{G}},%
+  description = {generic group},%
+  sort = {4group1.gen},%
+  parent = symbcat:struct,%
+  type = symbols,%
+}
+\newglossaryentry{struct:pointgroup}{%
+  name = {$\symcal{B}$},%
+  text = {\symcal{B}},%
+  description = {generic spatial point group},%
+  sort = {4group2.spatialpoint},%
+  parent = symbcat:struct,%
+  type = symbols,%
+}
+\newglossaryentry{struct:spinrotgroup}{%
+  name = {$\symcal{S}$},%
+  text = {\symcal{S}},%
+  description = {spin rotation group, identical to $\symsfup{SU}(2)$},%
+  sort = {4group3.spinrot},%
+  parent = symbcat:struct,%
+  type = symbols,%
+}
+\newglossaryentry{struct:timerevgroup}{%
+  name = {$\symcal{T}$},%
+  text = {\symcal{T}},%
+  description = {time-reversal group},%
+  sort = {4group4.timerev},%
+  parent = symbcat:struct,%
+  type = symbols,%
+}
+\newglossaryentry{struct:timerevdoublegroup}{%
+  name = {$\symcal{T}^*$},%
+  text = {\symcal{T}^*},%
+  description = {time-reversal double group},%
+  sort = {4group5.timerevdouble},%
+  parent = symbcat:struct,%
+  type = symbols,%
+}
+\newglossaryentry{struct:denspace}{%
+  name = {$\symcal{X}$},%
+  text = {\symcal{X}},%
+  description = {space of densities},%
+  sort = {4group6.denspace},%
+  parent = symbcat:struct,%
+  type = symbols,%
+}
+\newglossaryentry{struct:potspace}{%
+  name = {$\symcal{X}^*$},%
+  text = {\symcal{X}^*},%
+  description = {space of potentials},%
+  sort = {4group6.potspace},%
+  parent = symbcat:struct,%
+  type = symbols,%
+}
+% =========
+% Operators
+% =========
+\newglossaryentry{symbcat:op}{%
+  name = {Operators},%
+  description = {\nopostdesc},%
+  sort = {C.op},%
+}
+\newglossaryentry{op:hamil}{%
+  name = {$\hat{\symcal{H}}$},%
+  text = {\hat{\symcal{H}}},%
+  description = {electronic Hamiltonian},%
+  sort = {11H},%
+  parent = symbcat:op,%
+  type = symbols,%
+}
+\newglossaryentry{op:kin}{%
+  name = {$\hat{T}$},%
+  text = {\hat{T}},%
+  description = {total kinetic energy},%
+  sort = {13T},%
+  parent = symbcat:op,%
+  type = symbols,%
+}
+\newglossaryentry{op:kin1e}{%
+  name = {$\hat{t}$},%
+  text = {\hat{t}},%
+  description = {one-particle kinetic energy},%
+  sort = {13T1e},%
+  parent = symbcat:op,%
+  type = symbols,%
+}
+\newglossaryentry{op:pot}{%
+  name = {$\hat{V}$},%
+  text = {\hat{V}},%
+  description = {total external potential energy},%
+  sort = {14V},%
+  parent = symbcat:op,%
+  type = symbols,%
+}
+\newglossaryentry{op:pot1e}{%
+  name = {$v$},%
+  text = {v},%
+  description = {one-particle external potential energy},%
+  sort = {14V1e},%
+  parent = symbcat:op,%
+  type = symbols,%
+}
+\newglossaryentry{op:ee}{%
+  name = {$\hat{W}$},%
+  text = {\hat{W}},%
+  description = {total electron--electron repulsion energy},%
+  sort = {15W},%
+  parent = symbcat:op,%
+  type = symbols,%
+}
+\newglossaryentry{op:ee2e}{%
+  name = {$w$},%
+  text = {w},%
+  description = {two-particle electron--electron repulsion energy},%
+  sort = {15W2e},%
+  parent = symbcat:op,%
+  type = symbols,%
+}
+\newglossaryentry{op:fock1e}{%
+  name = {$\hat{f}$},%
+  text = {\hat{f}},%
+  description = {one-particle Fock operator},%
+  sort = {15f1e},%
+  parent = symbcat:op,%
+  type = symbols,%
+}
+\newglossaryentry{op:den}{%
+  name = {$\hat{\rho}$},%
+  text = {\hat{\rho}},%
+  description = {electron density operator},%
+  sort = {16den},%
+  parent = symbcat:op,%
+  type = symbols,%
+}
+\newglossaryentry{op:denen}{%
+  name = {$\hat{\gamma}$},%
+  text = {\hat{\gamma}},%
+  description = {ensemble-state electron density operator},%
+  sort = {16den},%
+  parent = symbcat:op,%
+  type = symbols,%
+}
+\newglossaryentry{op:invo1e}{%
+  name = {$\hat{\iota}_1$},%
+  text = {\hat{\iota}_1},%
+  description = {involutory operator for conventional/holomorphic theories on $\gls*{struct:hilbert1e}$},%
+  sort = {21involutory},%
+  parent = symbcat:op,%
+  type = symbols,%
+}
+\newglossaryentry{op:invo}{%
+  name = {$\hat{\iota}$},%
+  text = {\hat{\iota}},%
+  description = {involutory operator for conventional/holomorphic theories on $\gls*{struct:hilbertNe}$},%
+  sort = {22involutory},%
+  parent = symbcat:op,%
+  type = symbols,%
+}
+\newglossaryentry{op:conj}{%
+  name = {$\hat{\kappa}$},%
+  text = {\hat{\kappa}},%
+  description = {generic conjugation operator on a complex Hilbert space $\gls*{struct:hilbert}$},%
+  sort = {31conjugation},%
+  parent = symbcat:op,%
+  type = symbols,%
+}
+\newglossaryentry{op:spatialcomplexconj1e}{%
+  name = {$\hat{K}_1$},%
+  text = {\hat{K}_1},%
+  description = {spatial-complex-conjugation operator on $\gls*{struct:hilbert1e}$},%
+  sort = {32conjugation},%
+  parent = symbcat:op,%
+  type = symbols,%
+}
+\newglossaryentry{op:spatialcomplexconjNe}{%
+  name = {$\hat{K}$},%
+  text = {\hat{K}},%
+  description = {spatial-complex-conjugation operator on $\gls*{struct:hilbertNe}$},%
+  sort = {33conjugation},%
+  parent = symbcat:op,%
+  type = symbols,%
+}
+\newglossaryentry{op:wildcard}{%
+  name = {$\lozenge$},%
+  text = {\lozenge},%
+  description = {wildcard operator for conventional/holomorphic theories},%
+  sort = {34wildcard},%
+  parent = symbcat:op,%
+  type = symbols,%
+}
+\newglossaryentry{op:perm}{%
+  name = {$\hat{P}$},%
+  text = {\hat{P}},%
+  description = {electron label permutation},%
+  sort = {41P},%
+  parent = symbcat:op,%
+  type = symbols,%
+}
+\newglossaryentry{op:timerev1e}{%
+  name = {$\hat{\Theta}_1$},%
+  text = {\hat{\Theta}_1},%
+  description = {time reversal on $\gls*{struct:hilbert1e}$},%
+  sort = {51T},%
+  parent = symbcat:op,%
+  type = symbols,%
+}
+\newglossaryentry{op:timerev}{%
+  name = {$\hat{\Theta}$},%
+  text = {\hat{\Theta}},%
+  description = {time reversal on $\gls*{struct:hilbertNe}$},%
+  sort = {52T},%
+  parent = symbcat:op,%
+  type = symbols,%
+}
+\newglossaryentry{op:spinrot1e}{%
+  name = {$\hat{Q}_1$},%
+  text = {\hat{Q}_1},%
+  description = {spin rotation through $\pi$ about the $y$-axis on $\gls*{struct:hilbert1e}$},%
+  sort = {61q},%
+  parent = symbcat:op,%
+  type = symbols,%
+}
+\newglossaryentry{op:spinrotNe}{%
+  name = {$\hat{Q}$},%
+  text = {\hat{Q}},%
+  description = {spin rotation through $\pi$ about the $y$-axis on $\gls*{struct:hilbertNe}$},%
+  sort = {62q},%
+  parent = symbcat:op,%
+  type = symbols,%
+}
+% =============
+% Wavefunctions
+% =============
+\newglossaryentry{symbcat:wf}{%
+  name = {Wavefunctions},%
+  description = {\nopostdesc},%
+  sort = {D.wf},%
+}
+\newglossaryentry{wf:gen}{%
+  name = {$\Psi$},%
+  text = {\Psi},%
+  description = {generic electronic wavefunction},%
+  sort = {1Psi},%
+  parent = symbcat:wf,%
+  type = symbols,%
+}
+\newglossaryentry{wf:gentilde}{%
+  name = {$\tilde{\Psi}$},%
+  text = {\tilde{\Psi}},%
+  description = {\nopostdesc},%
+  sort = {1Psitilde},%
+  parent = symbcat:wf,%
+  type = ignored,%
+}
+\newglossaryentry{wf:ground}{%
+  name = {$\bar{\Psi}$},%
+  text = {\bar{\Psi}},%
+  description = {\nopostdesc},%
+  sort = {1Psitilde},%
+  parent = symbcat:wf,%
+  type = symbols,%
+}
+\newglossaryentry{wf:exact}{%
+  name = {$\Psi_{\symup{exact}}$},%
+  text = {\Psi_{\symup{exact}}},%
+  description = {exact electronic wavefunction},%
+  sort = {2Psiexact},%
+  parent = symbcat:wf,%
+  type = symbols,%
+}
+\newglossaryentry{wf:det}{%
+  name = {$\Psi_{\symup{d}}$},%
+  text = {\Psi_{\symup{d}}},%
+  description = {single-determinantal electronic wavefunction},%
+  sort = {4Psidet},%
+  parent = symbcat:wf,%
+  type = symbols,%
+}
+\newglossaryentry{wf:trial}{%
+  name = {$\Psi_{\symup{trial}}$},%
+  text = {\Psi_{\symup{trial}}},%
+  description = {variational trial electronic wavefunction},%
+  sort = {3Psitrial},%
+  parent = symbcat:wf,%
+  type = symbols,%
+}
+\newglossaryentry{wf:hf}{%
+  name = {$\Psi^{\symup{HF}}$},%
+  text = {\Psi^{\symup{HF}}},%
+  description = {Hartree--Fock electronic wavefunction},%
+  sort = {5Psihf},%
+  parent = symbcat:wf,%
+  type = symbols,%
+}
+\newglossaryentry{wf:uhf}{%
+  name = {$\Psi^{\symup{UHF}}$},%
+  text = {\Psi^{\symup{UHF}}},%
+  description = {unrestricted Hartree--Fock electronic wavefunction},%
+  sort = {6Psiuhf},%
+  parent = symbcat:wf,%
+  type = symbols,%
+}
+\newglossaryentry{wf:noci}{%
+  name = {$\Phi$},%
+  text = {\Phi},%
+  description = {multi-determinantal electronic wavefunction},%
+  sort = {7Phi},%
+  parent = symbcat:wf,%
+  type = symbols,%
+}
+\newglossaryentry{wf:nocitilde}{%
+  name = {$\tilde{\Phi}$},%
+  text = {\tilde{\Phi}},%
+  description = {\nopostdesc},%
+  sort = {7Phitilde},%
+  parent = symbcat:wf,%
+  type = ignored,%
+}
+% ===============
+% Basis Expansion
+% ===============
+\newglossaryentry{symbcat:bas}{%
+  name = {Basis Expansion},%
+  description = {\nopostdesc},%
+  sort = {E.bas},%
+}
+\newglossaryentry{bas:ssbasis}{%
+  name = {$\Sigma$},%
+  text = {\Sigma},%
+  description = {spin-orbital direct-product basis set spanning $\gls*{struct:hilbert1e}$},%
+  sort = {11ssbasis},%
+  parent = symbcat:bas,%
+  type = symbols,%
+}
+\newglossaryentry{bas:spinspatialcoord}{%
+  name = {$\symbfit{x}$},%
+  text = {\symbfit{x}},%
+  description = {spin-spatial coordinates},%
+  sort = {14spinspatialcoord},%
+  parent = symbcat:bas,%
+  type = symbols,%
+}
+\newglossaryentry{bas:spincoord}{%
+  name = {$s$},%
+  text = {s},%
+  description = {spin coordinates},%
+  sort = {15spincoord},%
+  parent = symbcat:bas,%
+  type = symbols,%
+}
+\newglossaryentry{bas:spatialcoord}{%
+  name = {$\symbfit{r}$},%
+  text = {\symbfit{r}},
+  description = {spatial coordinates},%
+  sort = {16spatialcoord},%
+  parent = symbcat:bas,%
+  type = symbols,%
+}
+\newglossaryentry{bas:spinbasis}{%
+  name = {$\omega\left(\gls*{bas:spincoord}\right)$},%
+  text = {\omega},%
+  description = {spin basis function},%
+  sort = {12spinbasis},%
+  parent = symbcat:bas,%
+  type = symbols,%
+}
+\newglossaryentry{bas:spatialbasis}{%
+  name = {$\varphi\left(\gls*{bas:spatialcoord}\right)$},%
+  text = {\varphi},%
+  description = {spatial basis function},%
+  sort = {13spatialbasis},%
+  parent = symbcat:bas,%
+  type = symbols,%
+}
+\newglossaryentry{bas:spinorb}{%
+  name = {$\chi\left(\gls*{bas:spinspatialcoord}\right)$},%
+  text = {\chi},%
+  description = {one-electron spin-orbital},%
+  sort = {17spinorb},%
+  parent = symbcat:bas,%
+  type = symbols,%
+}
+\newglossaryentry{bas:spinorbcc}{%
+  name = {$\bar{\chi}\left(\gls*{bas:spinspatialcoord}\right)$},%
+  text = {\bar{\chi}},%
+  description = {complex-conjugated one-electron spin-orbital},%
+  sort = {17spinorb},%
+  parent = symbcat:bas,%
+  type = ignored,%
+}
+\newglossaryentry{bas:spinorbbar}{%
+  name = {$\bar{\chi}\left(\gls*{bas:spinspatialcoord}\right)$},%
+  text = {\bar{\chi}},%
+  description = {spin-flipped one-electron spin-orbital},%
+  sort = {17spinorb},%
+  parent = symbcat:bas,%
+  type = ignored,%
+}
+\newglossaryentry{bas:spinpart}{%
+  name = {$\tau\left(\gls*{bas:spincoord}\right)$},%
+  text = {\tau},%
+  description = {spin part of a one-electron spin-orbital},%
+  sort = {18spinpart},%
+  parent = symbcat:bas,%
+  type = symbols,%
+}
+\newglossaryentry{bas:spatialpart}{%
+  name = {$\psi\left(\gls*{bas:spatialcoord}\right)$},%
+  text = {\psi},%
+  description = {spatial part of a one-electron spin-orbital},%
+  sort = {19spatialpart},%
+  parent = symbcat:bas,%
+  type = symbols,%
+}
+\newglossaryentry{bas:atomicorb}{%
+  name = {$\tilde{\varphi}\left(\gls*{bas:spatialcoord}\right)$},%
+  text = {\tilde{\varphi}},%
+  description = {atomic-orbital basis function},%
+  sort = {21atomicorb},%
+  parent = symbcat:bas,%
+  type = symbols,%
+}
+\newglossaryentry{bas:G}{%
+  name = {$G$},%
+  text = {G},%
+  description = {molecular-orbital coefficients},%
+  sort = {22GHFcoeffs},%
+  parent = symbcat:bas,%
+  type = symbols,%
+}
+\newglossaryentry{bas:gen}{%
+  name = {$\Xi$},%
+  text = {\Xi},%
+  description = {generic set of basis wavefunctions spanning a subspace of $\gls*{struct:hilbertNe}$},%
+  sort = {31genericwfbasis},%
+  parent = symbcat:bas,%
+  type = symbols,%
+}
+\newglossaryentry{bas:det}{%
+  name = {$\Xi_{\symup{det}}$},%
+  text = {\Xi_{\symup{det}}},%
+  description = {basis set of single-determinantal wavefunctions spanning a subspace of $\gls*{struct:hilbertNe}$},%
+  sort = {32detbasis},%
+  parent = symbcat:bas,%
+  type = symbols,%
+}
+\newglossaryentry{bas:detindept}{%
+  name = {$\tilde{\Xi}_{\symup{det}}$},%
+  text = {\tilde{\Xi}_{\symup{det}}},%
+  description = {linearly independent basis set of single-determinantal wavefunctions},%
+  sort = {33detbasisindept},%
+  parent = symbcat:bas,%
+  type = ignored,%
+}
+\newglossaryentry{bas:noci}{%
+  name = {$\Xi_{\symup{NOCI}}$},%
+  text = {\Xi_{\symup{NOCI}}},%
+  description = {basis set of NOCI wavefunctions spanning a subspace of $\gls*{struct:hilbertNe}$},%
+  sort = {34nocibasis},%
+  parent = symbcat:bas,%
+  type = symbols,%
+}
+\newglossaryentry{bas:nociindept}{%
+  name = {$\tilde{\Xi}_{\symup{NOCI}}$},%
+  text = {\tilde{\Xi}_{\symup{NOCI}}},%
+  description = {linearly independent basis set of NOCI wavefunctions},%
+  sort = {35nocibasisindept},%
+  parent = symbcat:bas,%
+  type = ignored,%
+}
+\newglossaryentry{bas:spinorbov}{%
+  name = {$\lambda$},%
+  text = {\lambda},%
+  description = {spin-orbital overlap},%
+  sort = {41spinorbov},%
+  parent = symbcat:bas,%
+  type = symbols,%
+}
+% =========
+% Densities
+% =========
+\newglossaryentry{symbcat:den}{%
+  name = {Densities},%
+  description = {\nopostdesc},%
+  sort = {F.wf},%
+}
+\newglossaryentry{den:gen}{%
+  name = {$\rho$},%
+  text = {\rho},%
+  description = {generic electronic density},%
+  sort = {1rho},%
+  parent = symbcat:den,%
+  type = symbols,%
+}
+\newglossaryentry{den:ground}{%
+  name = {$\bar{\rho}$},%
+  text = {\bar{\rho}},%
+  description = {reference electronic density},%
+  sort = {1rhoref},%
+  parent = symbcat:den,%
+  type = symbols,%
+}

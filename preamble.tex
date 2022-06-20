@@ -9,10 +9,6 @@
 % -----------------------------
 % Font, theme, and Beamerposter
 % -----------------------------
-\usepackage[T1]{fontenc}
-
-\usepackage{lmodern}
-
 \usepackage[orientation=portrait, size=a0, scale=1.1]{beamerposter}
 
 \usetheme{BCHNottingham}
@@ -34,7 +30,7 @@
 % Scientific typesetting
 % ----------------------
 \usepackage{siunitx}
-\AtBeginDocument{\sisetup{math-rm=\mathrm, text-rm=\rmfamily}}
+\AtBeginDocument{\sisetup{math-rm=\symup, text-rm=\rmfamily}}
 
 
 % ----------------
@@ -55,26 +51,10 @@
 % -------------
 % Maths support
 % -------------
-\usepackage{amsmath, amssymb, mathtools, mathrsfs, braket, amsthm} % packages for further maths support
+\usepackage{amsmath, amssymb, mathtools, mathrsfs, braket, amsthm, interval} % packages for further maths support
 
 \usepackage{mleftright} %loading package for ensuring correct spacing before brackets
 \mleftright
-
-
-% ------------
-% Bibliography
-% ------------
-\usepackage[%
-  sorting=none,%
-  style=nature,%
-  articletitle=false,%
-  autocite=superscript,%
-  dateabbrev=false,%
-  url=false,%
-  isbn=false,%
-  backend=biber%
-]{biblatex}
-\addbibresource{bib/watoc2020poster.bib}
 
 
 % ------
@@ -84,6 +64,15 @@
 
 \usepackage{lscape}
 
+
+%% -------------
+%% In-line lists
+%% -------------
+%\newenvironment{inlineitemize}{%
+%  \let\par\relax%
+%  \def\item{\usebeamertemplate{itemize item}\hspace{1mm}}
+%  \leavevmode%
+%}{}
 
 % -----------------
 % Cross-referencing
@@ -97,6 +86,7 @@
 \usepackage{graphicx}
 
 \usepackage{caption, subcaption}
+\captionsetup{justification=centering}
 
 
 % pgfplots
@@ -139,14 +129,14 @@
 
 % Tikzexternalize
 \makeatletter
-  \newcommand*{\useexternalfile}[1]{%
-    \iftikzex
-      \tikzsetnextfilename{tikzoutput/#1-output}%
-      \scalebox{1}{\input{\tikzexternal@filenameprefix#1.tikz}}
-    \else
-      \includegraphics[scale=1]{\tikzexternal@filenameprefix tikzoutput/#1-output.pdf}
-    \fi
-  }
+\newcommand*{\useexternalfile}[4]{
+  \iftikzex
+    \tikzsetnextfilename{tikzoutput/#4-output}
+    \scalebox{#1}{\input{\tikzexternal@filenameprefix#4.tikz.tex}}
+  \else
+    \includegraphics[scale=#1, trim=#2 0 #3 0]{\tikzexternal@filenameprefix tikzoutput/#4-output.pdf}
+  \fi
+}
 \makeatother
 
 \tikzsetexternalprefix{./tikz/}
@@ -159,7 +149,198 @@
 % (N+1)*\sepwidth + N*\colwidth = \paperwidth
 \newlength{\sepwidth}
 \newlength{\colwidth}
-\setlength{\sepwidth}{0.0275\paperwidth}
-\setlength{\colwidth}{0.45875\paperwidth}
+\setlength{\sepwidth}{0.0236\paperwidth}
+\setlength{\colwidth}{0.4646\paperwidth}
 
 \newcommand{\separatorcolumn}{\begin{column}{\sepwidth}\end{column}}
+
+
+% ----------------
+% Language support
+% ----------------
+% polyglossia requires fontspec
+\usepackage{polyglossia}
+\setmainlanguage[variant=british]{english}
+
+% Context-sensitive quotation marks
+\usepackage[english=british]{csquotes}
+
+
+% ------------
+% Bibliography
+% ------------
+\usepackage[%
+  sorting=none,%
+  style=nature,%
+  articletitle=false,%
+  autocite=superscript,%
+  dateabbrev=false,%
+  url=false,%
+  isbn=false,%
+  backend=biber%
+]{biblatex}
+\addbibresource{bib/watoc2020poster.bib}
+
+
+% ---------------
+% List of symbols
+% ---------------
+% Load the glossaries package (after hyperref)
+\usepackage[%
+  symbols,% create list of symbols
+  abbreviations,% create list of abbreviations
+  nomain,%
+  nonumberlist,%
+  nogroupskip,%
+  nopostdot%
+]{glossaries-extra}
+
+% Create an "ignored" list of symbols that will not be printed out
+\newglossary[glignoredl]{ignored}{glignored}{glignoredin}{Ignored Glossary}
+
+% Hyphenated long forms
+\glsaddkey
+  {hyphenated}        % new key
+  {\relax}            % default value if "hyphenated" isn't used in \newglossaryentry
+  {\glsentryhyphx}    % analogous to \glsentrytext
+  {\Glsentryhyphx}    % analogous to \Glsentrytext
+  {\glshyphx}         % analogous to \glstext
+  {\Glshyphx}         % analogous to \Glstext
+  {\GLShyphx}         % analogous to \GLStext
+\newcommand{\GENglspostlinkhook}{%
+  \ifglsused{\glslabel}{}{ (\glsentryshort{\glslabel})}\glsunset \glslabel}
+\makeatletter
+\newcommand\metadef[1]{%
+  \expandafter\newcommand\csname gls#1\endcsname{%
+    \@ifstar{\csname sgls#1\endcsname}{\csname ngls#1\endcsname}%
+  }
+  \@namedef{sgls#1}##1{{\let\glspostlinkhook \GENglspostlinkhook\expandafter\csname gls#1x\endcsname*{##1}}}%
+  \@namedef{ngls#1}##1{{\let\glspostlinkhook \GENglspostlinkhook\expandafter\csname gls#1x\endcsname{##1}}}%
+  \expandafter\newcommand\csname Gls#1\endcsname{%
+    \@ifstar{\csname sGls#1\endcsname}{\csname nGls#1\endcsname}%
+  }
+  \@namedef{sGls#1}##1{{\let\glspostlinkhook \GENglspostlinkhook\expandafter\csname Gls#1x\endcsname*{##1}}}%
+  \@namedef{nGls#1}##1{{\let\glspostlinkhook \GENglspostlinkhook\expandafter\csname Gls#1x\endcsname{##1}}}%
+  \expandafter\newcommand\csname GLS#1\endcsname{%
+    \@ifstar{\csname sGLS#1\endcsname}{\csname nGLS#1\endcsname}%
+  }
+  \@namedef{sGLS#1}##1{{\let\glspostlinkhook \GENglspostlinkhook\expandafter\csname GLS#1x\endcsname*{##1}}}%
+  \@namedef{nGLS#1}##1{{\let\glspostlinkhook \GENglspostlinkhook\expandafter\csname GLS#1x\endcsname{##1}}}%
+}
+\makeatother
+
+\metadef{hyph}
+
+\makeglossaries
+\loadglsentries{symbols/symbols}
+\loadglsentries{symbols/acronyms}
+
+
+% -----
+% Boxes
+% -----
+\usepackage[most]{tcolorbox}
+\usepackage{varwidth}
+\tcbsetforeverylayer{shield externalize}
+
+\newtcolorbox{violethighlightbox}[2][]{%
+  enhanced,
+  size=normal,
+  colframe=highlightviolet,
+  colback=highlightviolet!10!white,
+  colbacktitle=blue!25!yellow!10!white,
+  fonttitle=\Raleway\bfseries\large,
+  coltitle=highlightviolet!60!black,
+  fontupper=\normalsize,
+  boxed title size=standard,
+  attach boxed title to top center=
+  {yshift=-0.25mm-\tcboxedtitleheight/2, yshifttext=-4mm-\tcboxedtitleheight/2},
+  boxed title style={%
+    boxrule=0.5mm,
+    frame code={%
+      \path[tcb fill frame] ([xshift=-4mm]frame.west)
+      -- (frame.north west) -- (frame.north east) -- ([xshift=4mm]frame.east)
+      -- (frame.south east) -- (frame.south west) -- cycle;%
+    },
+    interior code={%
+      \path[tcb fill interior] ([xshift=-2mm]interior.west)
+      -- (interior.north west) -- (interior.north east)
+      -- ([xshift=2mm]interior.east) -- (interior.south east) -- (interior.south west)
+      -- cycle;%
+    }%
+  },
+  title=#2,
+  #1
+}
+\newtcolorbox{orangehighlightbox}[2][]{%
+  enhanced,
+  size=normal,
+  colframe=highlightorange,
+  colback=highlightorange!10!white,
+  colbacktitle=blue!25!yellow!10!white,
+  fonttitle=\Raleway\bfseries\large,
+  coltitle=highlightorange!60!black,
+  fontupper=\normalsize,
+  boxed title size=standard,
+  attach boxed title to top center=
+  {yshift=-0.25mm-\tcboxedtitleheight/2, yshifttext=-4mm-\tcboxedtitleheight/2},
+  boxed title style={%
+    boxrule=0.5mm,
+    frame code={%
+      \path[tcb fill frame] ([xshift=-4mm]frame.west)
+      -- (frame.north west) -- (frame.north east) -- ([xshift=4mm]frame.east)
+      -- (frame.south east) -- (frame.south west) -- cycle;%
+    },
+    interior code={%
+      \path[tcb fill interior] ([xshift=-2mm]interior.west)
+      -- (interior.north west) -- (interior.north east)
+      -- ([xshift=2mm]interior.east) -- (interior.south east) -- (interior.south west)
+      -- cycle;%
+    }%
+  },
+  title=#2,
+  #1
+}
+\newtcolorbox{greenhighlightbox}[2][]{%
+  enhanced,
+  size=normal,
+  colframe=highlightgreen,
+  colback=highlightgreen!10!white,
+  colbacktitle=blue!25!yellow!10!white,
+  fonttitle=\Raleway\bfseries\large,
+  coltitle=highlightgreen!60!black,
+  fontupper=\normalsize,
+  boxed title size=standard,
+  attach boxed title to top center=
+  {yshift=-0.25mm-\tcboxedtitleheight/2, yshifttext=-4mm-\tcboxedtitleheight/2},
+  boxed title style={%
+    boxrule=0.5mm,
+    frame code={%
+      \path[tcb fill frame] ([xshift=-4mm]frame.west)
+      -- (frame.north west) -- (frame.north east) -- ([xshift=4mm]frame.east)
+      -- (frame.south east) -- (frame.south west) -- cycle;%
+    },
+    interior code={%
+      \path[tcb fill interior] ([xshift=-2mm]interior.west)
+      -- (interior.north west) -- (interior.north east)
+      -- ([xshift=2mm]interior.east) -- (interior.south east) -- (interior.south west)
+      -- cycle;%
+    }%
+  },
+  title=#2,
+  #1
+}
+
+
+% ---------------
+% Special symbols
+% ---------------
+% Operators
+\DeclareMathOperator{\im}{im}
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\tr}{tr}
+\DeclareMathOperator{\spn}{span}
+\DeclareMathOperator{\Ln}{Ln}
+\DeclareMathOperator{\diag}{diag}
+\DeclareMathOperator{\Sym}{Sym}
+\DeclareMathOperator{\Arg}{Arg}
