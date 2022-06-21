@@ -98,12 +98,12 @@
 
   \begin{column}{\dimexpr(2\colwidth+\sepwidth)}
     \begin{alertblock}{3. Challenges of Degenerate Systems}
-      Consider a Hamiltonian $\gls*{op:hamil}[_{\lambda}](\gls*{op:pot1e})$ having a \emphbold{Red}{symmetry group $\gls*{struct:gengroup}_{\lambda}(\gls*{op:pot1e})$} and admitting a \emphbold{Blue}{degenerate ground wavefunction $\gls*{wf:ground}[^{\symup{M}}_{\lambda}](\gls*{op:pot1e})$} with energy $E^{\symup{M}}_{\lambda}(\gls*{op:pot1e})$ and density $\gls*{den:ground}[_{\lambda}^{\symup{M}}](\gls*{bas:spatialcoord}; \gls*{op:pot1e})$.
+      Consider a Hamiltonian $\gls*{op:hamil}[_{\lambda}](\gls*{op:pot1e})$ having a \emphbold{Red}{symmetry group $\gls*{struct:gengroup}_{\lambda}(\gls*{op:pot1e})$} and admitting a \emphbold{Blue}{degenerate ground wavefunction $\gls*{wf:ground}[^{\symup{M}}_{\lambda}](\gls*{op:pot1e})$} with \emphbold{Red}{energy $E^{\symup{M}}_{\lambda}(\gls*{op:pot1e})$} and \emphbold{Red}{density $\gls*{den:ground}[_{\lambda}^{\symup{M}}](\gls*{bas:spatialcoord}; \gls*{op:pot1e})$}.
 
       \begin{columns}[t]
         \begin{column}{\dimexpr(.65\colwidth)}
           \centering
-          \begin{orangehighlightbox}[height=15cm]{Well-defined gradient?}
+          \begin{orangehighlightbox}[height=15cm, overlay, remember as=gradbox]{Well-defined gradient?}
             The Lieb optimisation procedure to obtain the M-optimal potential $\gls*{op:pot1e}^{\symup{M}}_{\lambda}$ requires the functional derivative
             \begin{equation*}
               \frac{%
@@ -144,7 +144,7 @@
 
         \begin{column}{\dimexpr(.65\colwidth)}
           \centering
-          \begin{violethighlightbox}[height=15cm]{Symmetry of potential?}
+          \begin{violethighlightbox}[height=15cm, overlay, remember as=sympotbox]{Symmetry of potential?}
             At all $\lambda$, the M-optimal potential $\gls*{op:pot1e}[^{\symup{M}}_{\lambda}]$ determines the symmetry group of the Hamiltonian:
             \begin{alignat*}{4}
               \lambda = 1:   &\quad \gls*{op:pot1e}[_{\symup{ext}}] &&\mapsto \gls*{struct:gengroup}_1 \quad &&\textrm{physical system},\\
@@ -163,12 +163,12 @@
 
         \begin{column}{\dimexpr(.65\colwidth)}
           \centering
-          \begin{greenhighlightbox}[height=15cm]{Guarantee of $\symbfit{v}$-representability?}
+          \begin{greenhighlightbox}[height=15cm, overlay, remember as=vrepbox]{Guarantee of $\symbfit{v}$-representability?}
             The existence of the adiabatic connection $\symcal{W}_{\lambda}(\gls*{den:gen})$ requires the \emphbold{Red}{reference density $\gls*{den:gen}$} to be \emphbold{Red}{$v$-representable $\forall \lambda \in \interval{0}{1}$}.
             However, general $v$-representability conditions for $\gls*{den:gen} \in \gls*{struct:denspace}$ are not well-established.
             In particular:
             \begin{itemize}
-              \item Is $\gls*{den:ground}[^{\symup{M}}_1]$ pure-state $v$-representable $\forall \lambda \in \interval{0}{1}$?
+              \item Is $\gls*{den:ground}[^{\symup{M}}_1]$ \emphbold{Red}{pure-state} $v$-representable $\forall \lambda \in \interval{0}{1}$?
               \item Is the ensemble density
               \begin{equation*}
                 \gls*{den:ground}[^{\symup{M}}_{1, \symup{en}}] =
@@ -176,29 +176,28 @@
                 \sum_{i=1}^{\lvert \gls*{struct:gengroup}_1 \rvert}
                 \hat{g}_i \gls*{den:ground}[^{\symup{M}}_1]
               \end{equation*}
-              ensemble-state $v$-representable $\forall \lambda \in \interval{0}{1}$?
+              \emphbold{Red}{ensemble-state} $v$-representable $\forall \lambda \in \interval{0}{1}$?
             \end{itemize}
-%            Consider the pure-state degenerate density $\gls*{den:ground}[^{\symup{M}}_1]$.
-%            \begin{enumerate}
-%              \item Is $\gls*{den:ground}[^{\symup{M}}_1]$ non-interacting pure-state $v$-representable?
-%              \item Is $\gls*{den:ground}[^{\symup{M}}_1]$ non-interacting ensemble-state $v$-representable?
-%            \end{enumerate}
-%
-%            Consider now the following ensemble-state density $\gls*{den:ground}[^{\symup{M}}_{1, \symup{en}}]$:
-%            \begin{equation*}
-%              \gls*{den:ground}[^{\symup{M}}_{1, \symup{en}}] =
-%              \frac{1}{\lvert \gls*{struct:gengroup}_1 \rvert}
-%              \sum_{i=1}^{\lvert \gls*{struct:gengroup}_1 \rvert}
-%              \hat{g}_i \gls*{den:ground}[^{\symup{M}}_1].
-%            \end{equation*}
-%            \vspace{-1ex}
-%            \begin{enumerate}
-%              \setcounter{enumi}{2}
-%              \item Is $\gls*{den:ground}[^{\symup{M}}_{1, \symup{en}}]$ non-interacting ensemble-state $v$-representable?
-%            \end{enumerate}
           \end{greenhighlightbox}
         \end{column}
       \end{columns}
+      \vspace{1cm}
+      \begin{center}
+        \tcbox[%
+          enhanced,%
+          width=\colwidth,%
+          overlay,%
+          remember as=nonconvbox,%
+        ]{
+          \emphbold{Blue}{Non-convergence} in Lieb optimisation at some $\lambda \ne 1$.
+        }%
+      \end{center}%
+      \tikzexternaldisable
+      \begin{tikzpicture}[overlay, remember picture]
+        \draw[-{>[length=7mm, width=8mm]}, rounded corners=9pt, line width=0.8mm] (vrepbox) |- (nonconvbox);
+        \draw[-{>[length=7mm, width=8mm]}, rounded corners=9pt, line width=0.8mm] (sympotbox) -- (nonconvbox);
+        \draw[-{>[length=7mm, width=8mm]}, rounded corners=9pt, line width=0.8mm] (gradbox) |- (nonconvbox);
+      \end{tikzpicture}%
     \end{alertblock}
   \end{column}
 
