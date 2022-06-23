@@ -27,7 +27,7 @@
   \separatorcolumn
 
   \begin{column}{\colwidth}
-    \begin{block}{1. The Exact Adiabatic Connection}
+    \begin{block}{1. The Exact Adiabatic Connection (AC)}
       For an $\gls*{gen:Ne}$-electron system, consider a $\lambda$-parametrised electronic Hamiltonian
       \begin{equation*}
         \gls*{op:hamil}[_{\lambda}](\gls*{op:pot1e}_{\lambda})
@@ -42,19 +42,19 @@
       \end{equation*}
       that continuously links the \emphbold{LightSalmon}{physical system} to the \emphbold{LightSeaGreen}{non-interacting system}.
 
-      \tikzextrue
+%      \tikzextrue
       \tikzexternalenable
       \begin{figure}
         \centering
-        \useexternalfile{0.913}{0}{0}{acdiagram}
+        \useexternalfile{0.92}{0}{0}{acdiagram}
         \label{fig:acdiagram}
       \end{figure}
       \tikzexternaldisable
-      \tikzexfalse
+%      \tikzexfalse
 
-      The \emphbold{Red}{potential $\gls*{op:pot1e}_{\lambda}$} is chosen for $\gls*{op:hamil}[_{\lambda}]$ to admit the same \emphbold{Red}{ground density $\gls*{den:ground}$} as $\gls*{op:hamil}[_{1}]$ via the \emphbold{red}{ground density matrix $\gls*{op:denen}[_{\lambda}](\gls*{den:ground})$}.
+      The \emphbold{Blue}{potential $\gls*{op:pot1e}_{\lambda}$} is chosen for $\gls*{op:hamil}[_{\lambda}]$ to admit the same \emphbold{Blue}{ground density $\gls*{den:ground}$} as $\gls*{op:hamil}[_{1}]$ via the \emphbold{Blue}{ground density matrix $\gls*{op:denen}[_{\lambda}](\gls*{den:ground})$}.
 
-      The \emphbold{Blue}{adiabatic connection} is defined by $\symcal{W}_{\lambda}(\gls*{den:ground}) = \tr \gls*{op:denen}[_{\lambda}](\gls*{den:ground}) \gls*{op:ee}$, which we calculate accurately for small systems to form approximate models for larger systems.
+      The \emphbold{Red}{adiabatic connection (AC)}, defined by $\symcal{W}_{\lambda}(\gls*{den:ground}) = \tr \gls*{op:denen}[_{\lambda}](\gls*{den:ground}) \gls*{op:ee}$, can be calculated accurately for small systems to form approximate models for larger systems.
     \end{block}
   \end{column}
 
@@ -67,7 +67,7 @@
         \gls*{struct:denspace} = L^{3}(\symbb{R}^3) \cap L^{1}(\symbb{R}^3),\quad
         \gls*{struct:potspace} = L^{3/2}(\symbb{R}^3) + L^{\infty}(\symbb{R}^3).
       \end{equation*}
-      For every $\lambda$ along the adiabatic connection, given a \emphbold{Blue}{wavefunction method M} to compute the \emphbold{Red}{M-ground energy $E^{\symup{M}}_{\lambda}(\gls*{op:pot1e})$} of $\gls*{op:hamil}[_{\lambda}](\gls*{op:pot1e})$ and the M-reference density $\gls*{den:ground}[^{\symup{M}}_1] \in \gls*{struct:denspace}$, by finding the \emphbold{Red}{Lieb universal functional}
+      For every $\lambda$ along the AC, given a \emphbold{Red}{wavefunction method M} to compute the \emphbold{Blue}{M-ground energy $E^{\symup{M}}_{\lambda}(\gls*{op:pot1e})$} of $\gls*{op:hamil}[_{\lambda}](\gls*{op:pot1e})$ and the M-reference density $\gls*{den:ground}[^{\symup{M}}_1] \in \gls*{struct:denspace}$, by finding the \emphbold{Blue}{Lieb universal functional}
       \begin{equation*}
         F^{\symup{M}}_{\lambda}(\gls*{den:ground}[^{\symup{M}}_1])
           = \sup_{\gls*{op:pot1e} \in \gls*{struct:potspace}}
@@ -78,14 +78,20 @@
           \equiv \sup_{\gls*{op:pot1e} \in \gls*{struct:potspace}}
           G^{\symup{M}}_{\lambda}(\gls*{op:pot1e}; \gls*{den:ground}[^{\symup{M}}_1]),
       \end{equation*}
-      one obtains the \emphbold{Red}{M-optimal potential $\gls*{op:pot1e}^{\symup{M}}_{\lambda}$} that supports $\gls*{den:ground}^{\symup{M}}_{\lambda}$ as its ground density.
-
-      The higher the quality of the wavefunction method M:
+      one obtains the \emphbold{Blue}{M-optimal potential $\gls*{op:pot1e}^{\symup{M}}_{\lambda}$} that
       \begin{itemize}
-        \item the better $\gls*{den:ground}[^{\symup{M}}_1]$ approximates the true reference density $\gls*{den:ground}$;
-        \item the lower the Lieb-variational errors $\lVert \gls*{den:ground}^{\symup{M}}_{\lambda} - \gls*{den:ground}[^{\symup{M}}_1] \rVert_p$ where $1 \le p \le 3$; and
-        \item the better $\gls*{op:pot1e}^{\symup{M}}_{\lambda}$ approximates the true potential $\gls*{op:pot1e}_{\lambda}$.
+        \item supports $\gls*{den:ground}^{\symup{M}}_{\lambda}$ as its ground density; and
+        \item minimises the \emphbold{Blue}{Lieb-variational errors $\lVert \gls*{den:ground}^{\symup{M}}_{\lambda} - \gls*{den:ground}[^{\symup{M}}_1] \rVert_p$}, $1 \le p \le 3$.
       \end{itemize}
+
+      How well $\gls*{op:pot1e}^{\symup{M}}_{\lambda}$ approximates the true potential $\gls*{op:pot1e}_{\lambda}$ depends on the \emphbold{Red}{quality of the method M} and on \emphbold{Red}{whether $\gls*{op:pot1e}_{\lambda}$ actually exists in $\gls*{struct:potspace}$}.
+
+%      The higher the quality of the wavefunction method M:
+%      \begin{itemize}
+%        \item the better $\gls*{den:ground}[^{\symup{M}}_1]$ approximates the true reference density $\gls*{den:ground}$;
+%%        \item the lower the \emphbold{Blue}{Lieb-variational errors $\lVert \gls*{den:ground}^{\symup{M}}_{\lambda} - \gls*{den:ground}[^{\symup{M}}_1] \rVert_p$} where $1 \le p \le 3$; and
+%        \item the better $\gls*{op:pot1e}^{\symup{M}}_{\lambda}$ approximates the true potential $\gls*{op:pot1e}_{\lambda}$.
+%      \end{itemize}
 
     \end{block}
   \end{column}
@@ -98,12 +104,27 @@
 
   \begin{column}{\dimexpr(2\colwidth+\sepwidth)}
     \begin{alertblock}{3. Challenges of Degenerate Systems}
-      Consider a Hamiltonian $\gls*{op:hamil}[_{\lambda}](\gls*{op:pot1e})$ having a \emphbold{Red}{symmetry group $\gls*{struct:gengroup}_{\lambda}(\gls*{op:pot1e})$} and admitting a \emphbold{Blue}{degenerate ground wavefunction $\gls*{wf:ground}[^{\symup{M}}_{\lambda}](\gls*{op:pot1e})$} with \emphbold{Red}{energy $E^{\symup{M}}_{\lambda}(\gls*{op:pot1e})$} and \emphbold{Red}{density $\gls*{den:ground}[_{\lambda}^{\symup{M}}](\gls*{bas:spatialcoord}; \gls*{op:pot1e})$}.
+      Consider a Hamiltonian $\gls*{op:hamil}[_{\lambda}](\gls*{op:pot1e})$ having a \emphbold{Blue}{symmetry group $\gls*{struct:gengroup}_{\lambda}(\gls*{op:pot1e})$} and admitting a \emphbold{Red}{degenerate ground wavefunction $\gls*{wf:ground}[^{\symup{M}}_{\lambda}](\gls*{op:pot1e})$} with \emphbold{Blue}{energy $E^{\symup{M}}_{\lambda}(\gls*{op:pot1e})$} and \emphbold{Blue}{density $\gls*{den:ground}[_{\lambda}^{\symup{M}}](\gls*{bas:spatialcoord}; \gls*{op:pot1e})$}.
+
+      \vspace{1ex}
+      \begin{center}
+        \tcbox[%
+          enhanced,%
+          width=\colwidth,%
+          fontupper=\Large,
+          colframe=Red,
+          colback=Red!10!white,
+          overlay,%
+          remember as=nonconvbox,%
+        ]{
+          \emphbold{Red}{Non-convergence} in Lieb optimisation at $\lambda \ne 1$.
+        }%
+      \end{center}%
 
       \begin{columns}[t]
         \begin{column}{\dimexpr(.65\colwidth)}
           \centering
-          \begin{orangehighlightbox}[height=15cm, overlay, remember as=gradbox]{Well-defined gradient?}
+          \begin{highlightbox}[height=14.5cm, remember as=gradbox]{highlightorange}{Well-defined gradient?}{\faQuestionCircle[regular]}
             The Lieb optimisation procedure to obtain the M-optimal potential $\gls*{op:pot1e}^{\symup{M}}_{\lambda}$ requires the functional derivative
             \begin{equation*}
               \frac{%
@@ -111,7 +132,7 @@
               }{%
                 \delta \gls*{op:pot1e}(\gls*{bas:spatialcoord})%
               }
-              = \textcolor{Red}{%
+              = \textcolor{Blue}{%
                 \frac{%
                   \delta E^{\symup{M}}_{\lambda}(\gls*{op:pot1e})%
                 }{%
@@ -119,11 +140,11 @@
                 }%
               } - \gls*{den:ground}[^{\symup{M}}_1](\gls*{bas:spatialcoord}).
             \end{equation*}
-            As $\gls*{den:ground}[_{\lambda}^{\symup{M}}](\gls*{bas:spatialcoord}; \gls*{op:pot1e})$ is invariant only under a proper subgroup of $\gls*{struct:gengroup}_{\lambda}(\gls*{op:pot1e})$, the functional derivative $\textcolor{Red}{%
+            As the degenerate density $\gls*{den:ground}[_{\lambda}^{\symup{M}}](\gls*{bas:spatialcoord}; \gls*{op:pot1e})$ is not invariant under all of $\gls*{struct:gengroup}_{\lambda}(\gls*{op:pot1e})$, $\textcolor{Blue}{%
               \delta E^{\symup{M}}_{\lambda}(\gls*{op:pot1e}) / \delta \gls*{op:pot1e}(\gls*{bas:spatialcoord})%
-            }$ is \emphbold{Blue}{not unique}:
+            }$ is \emphbold{Red}{not unique}:
             \begin{equation*}
-              \textcolor{Red}{%
+              \textcolor{Blue}{%
                 \frac{%
                   \delta E^{\symup{M}}_{\lambda}(\gls*{op:pot1e})%
                 }{%
@@ -139,220 +160,173 @@
               \ c_i \ge 0,
               \ \sum_{i=1}^{\lvert\gls*{struct:gengroup}_{\lambda}(\gls*{op:pot1e})\rvert} c_i = 1.
             \end{equation*}
-          \end{orangehighlightbox}
+          \end{highlightbox}
         \end{column}
 
         \begin{column}{\dimexpr(.65\colwidth)}
           \centering
-          \begin{violethighlightbox}[height=15cm, overlay, remember as=sympotbox]{Symmetry of potential?}
-            At all $\lambda$, the M-optimal potential $\gls*{op:pot1e}[^{\symup{M}}_{\lambda}]$ determines the symmetry group of the Hamiltonian:
+          \begin{highlightbox}[height=14.5cm, remember as=sympotbox]{highlightviolet}{Symmetry of potential?}{\faQuestionCircle[regular]}
+            At all $\lambda$, the M-optimal potential $\gls*{op:pot1e}[^{\symup{M}}_{\lambda}]$ determines the \emphbold{Red}{symmetry group} of the Hamiltonian:
             \begin{alignat*}{4}
-              \lambda = 1:   &\quad \gls*{op:pot1e}[_{\symup{ext}}] &&\mapsto \gls*{struct:gengroup}_1 \quad &&\textrm{physical system},\\
-              \lambda \ne 1: &\quad \gls*{op:pot1e}[^{\symup{M}}_{\lambda}] &&\mapsto \gls*{struct:gengroup}_{\lambda}(\gls*{op:pot1e}[^{\symup{M}}_{\lambda}]) \quad &&\textrm{auxiliary systems}.
+              \lambda = 1:   &\quad \gls*{op:pot1e}[_{\symup{ext}}] &&\mapsto \gls*{struct:gengroup}_1(\gls*{op:pot1e}[_{\symup{ext}}]) \quad &&\textrm{physical system},\\[6pt]
+              0 \le \lambda < 1: &\quad \gls*{op:pot1e}[^{\symup{M}}_{\lambda}] &&\mapsto \gls*{struct:gengroup}_{\lambda}(\gls*{op:pot1e}[^{\symup{M}}_{\lambda}]) \quad &&\textrm{auxiliary systems}.
             \end{alignat*}
-            Is \emphbold{Blue}{equality} in the following condition
+            Is \emphbold{Red}{equality} in the following condition
             \begin{equation*}
-              \gls*{struct:gengroup}_1 \ge \gls*{struct:gengroup}_{\lambda}(\gls*{op:pot1e}[^{\symup{M}}_{\lambda}]),
+              \gls*{struct:gengroup}_1(\gls*{op:pot1e}[_{\symup{ext}}]) \ge \gls*{struct:gengroup}_{\lambda}(\gls*{op:pot1e}[^{\symup{M}}_{\lambda}]),
               \quad
               \lambda \ne 1
             \end{equation*}
-            necessary for $\gls*{op:pot1e}[^{\symup{M}}_{\lambda}] \in \gls*{struct:potspace}$?
-            In other words, should the \emphbold{Red}{auxiliary systems} \emphbold{Blue}{respect} the symmetry of the \emphbold{Red}{physical system}?
-          \end{violethighlightbox}
+            necessary?
+            In other words, do the \emphbold{Blue}{auxiliary systems} have to \emphbold{Red}{respect} the symmetry of the \emphbold{Blue}{physical system}?
+          \end{highlightbox}
         \end{column}
 
         \begin{column}{\dimexpr(.65\colwidth)}
           \centering
-          \begin{greenhighlightbox}[height=15cm, overlay, remember as=vrepbox]{Guarantee of $\symbfit{v}$-representability?}
-            The existence of the adiabatic connection $\symcal{W}_{\lambda}(\gls*{den:gen})$ requires the \emphbold{Red}{reference density $\gls*{den:gen}$} to be \emphbold{Red}{$v$-representable $\forall \lambda \in \interval{0}{1}$}.
-            However, general $v$-representability conditions for $\gls*{den:gen} \in \gls*{struct:denspace}$ are not well-established.
-            In particular:
-            \begin{itemize}
-              \item Is $\gls*{den:ground}[^{\symup{M}}_1]$ \emphbold{Red}{pure-state} $v$-representable $\forall \lambda \in \interval{0}{1}$?
-              \item Is the ensemble density
-              \begin{equation*}
-                \gls*{den:ground}[^{\symup{M}}_{1, \symup{en}}] =
-                \frac{1}{\lvert \gls*{struct:gengroup}_1 \rvert}
-                \sum_{i=1}^{\lvert \gls*{struct:gengroup}_1 \rvert}
-                \hat{g}_i \gls*{den:ground}[^{\symup{M}}_1]
-              \end{equation*}
-              \emphbold{Red}{ensemble-state} $v$-representable $\forall \lambda \in \interval{0}{1}$?
-            \end{itemize}
-          \end{greenhighlightbox}
+          \begin{highlightbox}[height=14.5cm, remember as=vrepbox]{highlightgreen}{Pure-state $\symbfit{v}$-representability (PSVR)?}{\faQuestionCircle[regular]}
+            The \emphbold{Blue}{continuity} of the AC $\symcal{W}_{\lambda}(\gls*{den:ground})$ requires the \emphbold{Blue}{reference density $\gls*{den:ground}$} to be \emphbold{Blue}{$v$-representable $\forall \lambda \in \interval{0}{1}$}.
+            However, general $v$-representability conditions for densities in $\gls*{struct:denspace}$ are not well-established.
+
+            In particular, consider the degenerate pure-state ground density $\gls*{den:ground}[^{\symup{M}}_1]$ as the reference density: there is no guarantee that it is \emphbold{Red}{pure-state $v$-representable} $\forall \lambda \in \interval{0}{1}$.\\
+            $\Leftrightarrow$ There can exist $\lambda$ values at which the M-optimal potential $\gls*{op:pot1e}^{\symup{M}}_{\lambda}$ supports a ground density $\gls*{den:ground}^{\symup{M}}_{\lambda}$ such that the Lieb-variational errors $\lVert \gls*{den:ground}^{\symup{M}}_{\lambda} - \gls*{den:ground}[^{\symup{M}}_1] \rVert_p$ can get arbitrarily large.
+          \end{highlightbox}
         \end{column}
       \end{columns}
-      \vspace{1cm}
-      \begin{center}
-        \tcbox[%
-          enhanced,%
-          width=\colwidth,%
-          overlay,%
-          remember as=nonconvbox,%
-        ]{
-          \emphbold{Blue}{Non-convergence} in Lieb optimisation at some $\lambda \ne 1$.
-        }%
-      \end{center}%
+
+      \vspace{2cm}
+
+      \begin{columns}[t]
+        \begin{column}{\dimexpr(.65\colwidth)}
+          \centering
+          \begin{highlightbox}[height=10.95cm, remember as=denalignbox]{highlightorange}{Density alignment}{\faCheckCircle[regular]}
+            The uniqueness of $\textcolor{Blue}{%
+              \delta E^{\symup{M}}_{\lambda}(\gls*{op:pot1e}) / \delta \gls*{op:pot1e}(\gls*{bas:spatialcoord})%
+            }$ is enforced by \emphbold{Red}{choosing}
+            \begin{equation*}
+              \textcolor{Blue}{%
+                \frac{%
+                  \delta E^{\symup{M}}_{\lambda}(\gls*{op:pot1e})%
+                }{%
+                  \delta \gls*{op:pot1e}(\gls*{bas:spatialcoord})%
+                }%
+              }
+              = \hat{g} \gls*{den:ground}[_{\lambda}^{\symup{M}}](\gls*{bas:spatialcoord}; v),
+              \quad
+              g \in \gls*{struct:gengroup}_1(\gls*{op:pot1e}[_{\symup{ext}}])
+            \end{equation*}
+            such that $\hat{g} \gls*{den:ground}[_{\lambda}^{\symup{M}}](\gls*{bas:spatialcoord}; v)$ is in the \emphbold{Red}{same symmetry gauge} as $\gls*{den:ground}[_{1}^{\symup{M}}](\gls*{bas:spatialcoord})$, \textit{i.e.} both densities are invariant under the same subgroup of $\gls*{struct:gengroup}_1(\gls*{op:pot1e}[_{\symup{ext}}])$.
+          \end{highlightbox}
+        \end{column}
+
+        \begin{column}{\dimexpr(.65\colwidth)}
+          \centering
+          \begin{highlightbox}[height=10.95cm, remember as=potsymconsbox]{highlightviolet}{Potential symmetry constraint}{\faCheckCircle[regular]}
+            In the simplest \textit{Ansatz},  at any $\lambda \in \interval{0}{1}$, the constraint
+            \begin{equation*}
+              \gls*{struct:gengroup}_1(\gls*{op:pot1e}[_{\symup{ext}}]) \mathbin{\textcolor{Red}{=}} \gls*{struct:gengroup}_{\lambda}(\gls*{op:pot1e})
+            \end{equation*}
+             is imposed for \emphbold{Blue}{all trial potentials $\gls*{op:pot1e}$} to assist convergence in the Lieb optimisation.
+
+            The necessity of this constraint can then be systematically investigated by relaxing to subgroups of $\gls*{struct:gengroup}_1(\gls*{op:pot1e}[_{\symup{ext}}])$.
+          \end{highlightbox}
+        \end{column}
+
+        \begin{column}{\dimexpr(.65\colwidth)}
+          \centering
+          \begin{highlightbox}[height=10.95cm, remember as=totsymendenbox]{highlightgreen}{Totally symmetric ensemble density}{\faCheckCircle[regular]}
+            Consider instead the ensemble density
+            \begin{equation*}
+              \frac{1}{\lvert\gls*{struct:gengroup}_1\rvert}
+              \sum_{i=1}^{\lvert\gls*{struct:gengroup}_1\rvert}
+                \hat{g}_i
+                \gls*{den:ground}[_{1}^{\symup{M}}](\gls*{bas:spatialcoord}),
+              \quad
+              g_i \in \gls*{struct:gengroup}_1(\gls*{op:pot1e}[_{\symup{ext}}]) \equiv \gls*{struct:gengroup}_1
+            \end{equation*}
+            as the reference density, which is invariant under all of $\gls*{struct:gengroup}_1(\gls*{op:pot1e}[_{\symup{ext}}])$ and \emphbold{Red}{not skewed} towards any particular degenerate component.
+          \end{highlightbox}
+        \end{column}
+      \end{columns}
+
       \tikzexternaldisable
       \begin{tikzpicture}[overlay, remember picture]
-        \draw[-{>[length=7mm, width=8mm]}, rounded corners=9pt, line width=0.8mm] (vrepbox) |- (nonconvbox);
-        \draw[-{>[length=7mm, width=8mm]}, rounded corners=9pt, line width=0.8mm] (sympotbox) -- (nonconvbox);
-        \draw[-{>[length=7mm, width=8mm]}, rounded corners=9pt, line width=0.8mm] (gradbox) |- (nonconvbox);
-      \end{tikzpicture}%
+        % Top arrows
+        \draw[-{>[length=7mm, width=8mm]}, rounded corners=9pt, line width=1.7mm, Red] (nonconvbox) -| ($(vrepbox.north) + (0, 1.5ex)$);
+        \draw[-{>[length=7mm, width=8mm]}, rounded corners=9pt, line width=1.7mm, Red] (nonconvbox) -- ($(sympotbox.north) + (0, 1.5ex)$);
+        \draw[-{>[length=7mm, width=8mm]}, rounded corners=9pt, line width=1.7mm, Red] (nonconvbox) -| ($(gradbox.north) + (0, 1.5ex)$);
+        % Bottom arrows
+        \draw[-{>[length=7mm, width=8mm]}, rounded corners=9pt, line width=1.7mm, Red] (gradbox) -- ($(denalignbox.north) + (0, 1.5ex)$);
+        \draw[-{>[length=7mm, width=8mm]}, rounded corners=9pt, line width=1.7mm, Red] (sympotbox) -- ($(potsymconsbox.north) + (0, 1.5ex)$);
+        \draw[-{>[length=7mm, width=8mm]}, rounded corners=9pt, line width=1.7mm, Red] (vrepbox) -- ($(totsymendenbox.north) + (0, 1.5ex)$);
+      \end{tikzpicture}
+      \tikzexternalenable
+      \vspace{-0.5cm}
     \end{alertblock}
   \end{column}
 
   \separatorcolumn
 \end{columns}
 
-%\begin{columns}[t]
-%  \separatorcolumn
-%
-%  \begin{column}{\colwidth}
-%
-%    \begin{block}{Introduction}
-%      Transition-metal complexes are \textbf{\color{Blue} strongly correlated} as they have many low-energy electronic states that exhibit \textbf{\color{Blue} high degrees of degeneracy}. \Cref{fig:corrTSd2} gives such states for octahedral $d^2$ as an example.
-%
-%        \begin{figure}
-%          \begin{subfigure}[b]{0.49\textwidth}
-%            \centering
-%            \useexternalfile{corrd2}
-%            \caption{Correlation diagram (not to scale)}
-%          \end{subfigure}
-%          \hfill
-%          \begin{subfigure}[b]{0.49\textwidth}
-%            \centering
-%            \useexternalfile{TSd2}
-%            \caption{Tanabe--Sugano diagram}
-%          \end{subfigure}
-%          \caption{All electronic terms of a true $d^2$ system in an octahedral field.}
-%          \label{fig:corrTSd2}
-%        \end{figure}
-%
-%      The non-linear HF equations for these complexes therefore admit \textbf{\color{Blue} multiple low-lying solutions} that are \textbf{\color{Blue} degenerate} or \textbf{\color{Blue} nearly degenerate}.
-%
-%      We have located these solutions using \textbf{\color{Blue} SCF metadynamics} and investigated their \textbf{\color{red} symmetry properties} in a model octahedral $d^2$ system, \ce{[VF6]^{3-}} (\cref{fig:d2_allnoci}).
-%      \end{block}
-%
-%    \begin{alertblock}{Symmetry Breaking in HF}
-%      Degenerate eigenfunctions of the spinless Hamiltonian \emph{must} transform as a single irreducible representation (irrep) of the underlying point group $\mathcal{B}$, the spin rotation group $\mathsf{SU}(2)$, or the time reversal group $\mathcal{T}$.
-%
-%      HF wavefunctions do not have to obey this due to their approximate nature. Thus, consider a set of degenerate HF solutions %
-%        $\mathrm{S} =
-%          \left\lbrace
-%            \prescript{w}{}{\Psi} %
-%            \ | \ %
-%            w = 1, 2, \ldots %
-%          \right\rbrace%
-%        $ %
-%      and a particular group $\mathcal{G}$:
-%        \begin{itemize}
-%          \item if $\mathrm{S}$ spans a \textbf{\color{Blue} single irrep} in $\mathcal{G}$, then $\mathrm{S}$ is \textbf{\color{red} symmetry-conserved} in $\mathcal{G}$;
-%          \item if $\mathrm{S}$ spans \textbf{\color{Blue} multiple
-%          irreps} in $\mathcal{G}$, then $\mathrm{S}$ is \textbf{\color{red} symmetry-broken} in $\mathcal{G}$.
-%        \end{itemize}
-%
-%      HF solutions break symmetry to become lower in energy and possibly recover some electron correlation. \textbf{\color{Blue} Restoring symmetry} of symmetry-broken HF solutions allows us to form \textbf{\color{red} physically meaningful wavefunctions} while \textbf{\color{red} incorporating said correlation}.
-%    \end{alertblock}
-%
-%    \begin{block}{Restoring Symmetry: Non-Orthogonal CI (NOCI)}
-%      For a complete symmetry-broken set %
-%        $\mathrm{S} =
-%          \left\lbrace
-%            \prescript{w}{}{\Psi} %
-%            \ | \ %
-%            w = 1, 2, \ldots %
-%          \right\rbrace%
-%        $, %
-%      solving the generalised eigenvalue equation
-%        \begin{equation*}
-%          \boldsymbol{HA} = \boldsymbol{SAE} \quad %
-%          \textsf{where} \quad %
-%          \left(\boldsymbol{H}\right)_{wx} = %
-%            \braket{\prescript{w}{}{\Psi}|\hat{\mathscr{H}}|\prescript{x}{}{\Psi}} \  %
-%          \textsf{and} \  %
-%          \left(\boldsymbol{S}\right)_{wx} = %
-%            \braket{\prescript{w}{}{\Psi}|\prescript{x}{}{\Psi}} %
-%        \end{equation*}
-%      gives coefficients $A_{wm}$ such that the \textbf{\color{Blue} NOCI wavefunctions}
-%        \begin{equation*}
-%          \prescript{m}{}{\Phi} = \sum_{w} \prescript{w}{}{\Psi} A_{wm}
-%        \end{equation*}
-%      \textbf{\color{red} conserve symmetry} and can be used to approximate corresponding electronic terms.
-%    \end{block}
-%
-%  \end{column}
-%
-%  \separatorcolumn
-%
-%  \begin{column}{\colwidth}
-%
-%    \begin{block}{UHF vs. NOCI: Jahn--Teller Distortion}
-%      Consider the $T_{1g} \otimes e_g$ Jahn--Teller distortion in octaheral \ce{[VF6]^{3-}}. \Cref{fig:JT} shows that:
-%        \begin{itemize}
-%          \item the UHF $\symup{A}_1$ and $\mathrm{A}'_1$ solutions fail to exhibit the expected energy minima;
-%          \item the $\prescript{3}{}{T}_{1g}[\mathrm{A}_1 \oplus \mathrm{A}'_1]$ \textbf{\color{Blue} NOCI wavefunctions} do \textbf{\color{Red} show the expected stabilisation} and give the \textbf{\color{Red} correct degeneracy splitting} upon symmetry descent.
-%        \end{itemize}
-%
-%
-%
-%      \begin{figure}
-%        \centering
-%        \useexternalfile{A.JT.Eg.minimal}
-%        \captionsetup{justification=centering}
-%        \caption{
-%          State energy in the $T_{1g} \otimes e_g$ Jahn--Teller distortion of octahedral \ce{[VF6]^{3-}}.\\[6pt]
-%          \footnotesize Dashed curves: symmetry-broken UHF $\mathrm{A}_1$ or $\mathrm{A}'_1$ solutions. Solid curves: $\prescript{3}{}{T}_{1g}[\mathrm{A}_1 \oplus \mathrm{A}'_1]$ NOCI wavefunctions.}
-%        \label{fig:JT}
-%      \end{figure}
-%    \end{block}
-%
-%    \begin{block}{Solution Topology: Euclidean Realisation of State Distances}
-%      By realising the distance matrices between symmetry-broken HF solutions to give \textbf{\color{Blue} polytopes} showing their \textbf{\color{red} arrangements in Euclidean space} (\cref{fig:AAdashpolytopes}), we hope to gain insight into the nature of their symmetry breaking.
-%
-%      \begin{figure}
-%        \begin{subfigure}[b]{0.3\textwidth}
-%          \centering
-%          \useexternalfile{AAdashpolytope.Egu.elongation.g8}
-%          \caption{$S_2 = \SI{-0.04}{\angstrom}$}
-%        \end{subfigure}
-%        \hfill
-%        \begin{subfigure}[b]{0.3\textwidth}
-%          \centering
-%          \useexternalfile{AAdashpolytope.Egu.compression.g0}
-%          \caption{$S_2 = 0$}
-%        \end{subfigure}
-%        \hfill
-%        \begin{subfigure}[b]{0.3\textwidth}
-%          \centering
-%          \useexternalfile{AAdashpolytope.Egu.compression.g8}
-%          \caption{$S_2 = \SI{0.04}{\angstrom}$}
-%        \end{subfigure}
-%        \caption{Three-dimensional projections of polytopes of $\mathrm{A}_1$ and $\mathrm{A}'_1$ solutions along the $e_{g}u$ distortion.}
-%        \label{fig:AAdashpolytopes}
-%      \end{figure}
-%    \end{block}
-%
-%    \begin{alertblock}{In a Nutshell}
-%      \begin{itemize}
-%        \item There exist \textbf{\color{DarkGreen} many low-lying HF solutions} in transition-metal complexes.
-%        \item Some solutions \textbf{\color{DarkGreen} break symmetry}, spin or spatial or both.
-%        \item NOCI can \textbf{\color{DarkGreen} restore symmetry} to give \textbf{\color{DarkGreen} proper physical behaviours}, \textit{e.g.}, vibronic coupling.
-%        \item There are \textbf{\color{DarkGreen} clear patterns} in symmetry breaking that need further understanding.
-%      \end{itemize}
-%    \end{alertblock}
-%
-%%    \begin{block}{References}
-%%
-%%      \AtNextBibliography{\footnotesize}
-%%      \nocite{*}
-%%      \printbibliography[title=none]
-%%
-%%    \end{block}
-%
-%  \end{column}
-%
-%  \separatorcolumn
-%\end{columns}
+\begin{columns}[t]
+  \separatorcolumn
+
+  \begin{column}{1.37\colwidth}
+
+    \begin{block}{4. $\symbfit{v}$-Representability in the Adiabatic Connection}
+      \vspace{-1.0cm}
+      \tikzextrue
+      \tikzexternalenable
+      \begin{figure}
+        \centering
+        \begin{subfigure}[t]{0.80\colwidth}
+          \subcaption{\emphbold{Blue}{Pure-state} density vs. \emphbold{Red}{ensemble} density ACs.}
+          \useexternalfile{0.83}{0}{0}{ac_C_O}
+        \end{subfigure}
+        \begin{subfigure}[t]{0.54\colwidth}
+          \subcaption{%
+            Exchange-correlation potentials in \emphbold{Red}{ensemble} density ACs.%
+          }
+          \useexternalfile{0.83}{0}{0}{pot_C_O}
+        \end{subfigure}
+      \end{figure}
+      \tikzexternaldisable
+      \tikzexfalse
+    \end{block}
+
+  \end{column}
+
+  \halfseparatorcolumn
+
+  \begin{column}{\dimexpr(0.63\colwidth+0.5\sepwidth)}
+    \begin{alertblock}{5. Discussion}
+      \emphbold{darkblue}{\underline{Tackling the degeneracy challenges}}
+      \begin{itemize}
+        \item \emphbold{highlightorange}{Density alignment} guarantees well-defined gradients for asymmetric densities.
+        \item \emphbold{highlightviolet}{Constraining} the potential to be \emphbold{highlightviolet}{totally symmetric} speeds up convergence by limiting $\gls*{struct:potspace}$ to symmetry-sensible subspaces.
+        \item \emphbold{highlightgreen}{Totally symmetric ensemble densities} ensure $v$-representability by avoiding unphysical HOMO--LUMO inversions.
+      \end{itemize}
+      \emphbold{darkblue}{\underline{Results}}
+      \begin{itemize}
+        \item \emphbold{Red}{Smooth} ACs for open-shell degenerate atoms with \emphbold{Red}{acceptable} Lieb-variational errors
+        \item Exchange-correlation potentials with \emphbold{Red}{qualitatively reasonable} features
+      \end{itemize}
+    \end{alertblock}
+
+    \begin{block}{References}
+
+      \AtNextBibliography{\footnotesize}
+      \nocite{*}
+      \begin{center}\mbox{}\vspace{-\baselineskip}
+        \printbibliography[heading=none]
+      \end{center}
+
+    \end{block}
+
+  \end{column}
+
+  \separatorcolumn
+\end{columns}
 \end{frame}
 
 \end{document}

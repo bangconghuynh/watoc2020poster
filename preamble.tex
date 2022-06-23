@@ -31,6 +31,7 @@
 % ----------------------
 \usepackage{siunitx}
 \AtBeginDocument{\sisetup{math-rm=\symup, text-rm=\rmfamily}}
+\DeclareSIUnit{\atomicunits}{a.u.}
 
 
 % ----------------
@@ -111,7 +112,19 @@
 \iftikzex
   \pgfplotsset{compat=1.17}
 
-  \usetikzlibrary{calc, luamath, positioning, pgfplots.groupplots, arrows.meta}
+  \usetikzlibrary{%
+    calc,%
+    luamath,%
+    positioning,%
+    pgfplots.groupplots,%
+    arrows.meta,%
+    shapes.misc,%
+    decorations.markings,%
+  }
+  \usepgfplotslibrary{%
+    groupplots,%
+    fillbetween,%
+  }
 
   \pgfplotscreateplotcyclelist{coloronly}{%
     {red},%
@@ -153,6 +166,7 @@
 \setlength{\colwidth}{0.4646\paperwidth}
 
 \newcommand{\separatorcolumn}{\begin{column}{\sepwidth}\end{column}}
+\newcommand{\halfseparatorcolumn}{\begin{column}{.5\sepwidth}\end{column}}
 
 
 % ----------------
@@ -243,19 +257,24 @@
 \usepackage{varwidth}
 \tcbsetforeverylayer{shield externalize}
 
-\newtcolorbox{violethighlightbox}[2][]{%
+% \begin{highlightbox}[<options>]{colour}{title}
+%    box content
+% \end{highlightbox}
+\newtcolorbox{highlightbox}[4][]{%
   enhanced,
   size=normal,
-  height=14.5cm,
-  colframe=highlightviolet,
-  colback=highlightviolet!10!white,
-  colbacktitle=blue!25!yellow!10!white,
+  overlay={%
+    \node[anchor=north east, outer sep=-4pt, #2!80!white, scale=1] at ($(frame.north east) + (0.6ex, 0)$) {#4};
+  },
+  colframe=#2,
+  colback=#2!10!white,
+  colbacktitle=#2!25!yellow!10!white,
   fonttitle=\Raleway\bfseries\large,
-  coltitle=highlightviolet!60!black,
+  coltitle=#2!60!black,
   fontupper=\normalsize,
   boxed title size=standard,
   attach boxed title to top center=
-  {yshift=-0.25mm-\tcboxedtitleheight/2, yshifttext=-4mm-\tcboxedtitleheight/2},
+  {yshift=-0.25mm-\tcboxedtitleheight/2, yshifttext=-5mm-\tcboxedtitleheight/2},
   boxed title style={%
     boxrule=0.5mm,
     frame code={%
@@ -270,67 +289,7 @@
       -- cycle;%
     }%
   },
-  title=#2,
-  #1
-}
-\newtcolorbox{orangehighlightbox}[2][]{%
-  enhanced,
-  size=normal,
-  height=14.5cm,
-  colframe=highlightorange,
-  colback=highlightorange!10!white,
-  colbacktitle=blue!25!yellow!10!white,
-  fonttitle=\Raleway\bfseries\large,
-  coltitle=highlightorange!60!black,
-  fontupper=\normalsize,
-  boxed title size=standard,
-  attach boxed title to top center=
-  {yshift=-0.25mm-\tcboxedtitleheight/2, yshifttext=-4mm-\tcboxedtitleheight/2},
-  boxed title style={%
-    boxrule=0.5mm,
-    frame code={%
-      \path[tcb fill frame] ([xshift=-4mm]frame.west)
-      -- (frame.north west) -- (frame.north east) -- ([xshift=4mm]frame.east)
-      -- (frame.south east) -- (frame.south west) -- cycle;%
-    },
-    interior code={%
-      \path[tcb fill interior] ([xshift=-2mm]interior.west)
-      -- (interior.north west) -- (interior.north east)
-      -- ([xshift=2mm]interior.east) -- (interior.south east) -- (interior.south west)
-      -- cycle;%
-    }%
-  },
-  title=#2,
-  #1
-}
-\newtcolorbox{greenhighlightbox}[2][]{%
-  enhanced,
-  size=normal,
-  height=14.5cm,
-  colframe=highlightgreen,
-  colback=highlightgreen!10!white,
-  colbacktitle=blue!25!yellow!10!white,
-  fonttitle=\Raleway\bfseries\large,
-  coltitle=highlightgreen!60!black,
-  fontupper=\normalsize,
-  boxed title size=standard,
-  attach boxed title to top center=
-  {yshift=-0.25mm-\tcboxedtitleheight/2, yshifttext=-4mm-\tcboxedtitleheight/2},
-  boxed title style={%
-    boxrule=0.5mm,
-    frame code={%
-      \path[tcb fill frame] ([xshift=-4mm]frame.west)
-      -- (frame.north west) -- (frame.north east) -- ([xshift=4mm]frame.east)
-      -- (frame.south east) -- (frame.south west) -- cycle;%
-    },
-    interior code={%
-      \path[tcb fill interior] ([xshift=-2mm]interior.west)
-      -- (interior.north west) -- (interior.north east)
-      -- ([xshift=2mm]interior.east) -- (interior.south east) -- (interior.south west)
-      -- cycle;%
-    }%
-  },
-  title=#2,
+  title=#3,
   #1
 }
 
@@ -347,3 +306,4 @@
 \DeclareMathOperator{\diag}{diag}
 \DeclareMathOperator{\Sym}{Sym}
 \DeclareMathOperator{\Arg}{Arg}
+\DeclareMathOperator*{\argmin}{argmin}

@@ -70,6 +70,12 @@
   range={scr, bfscr, cal, bfcal},%
 ]
 
+
+% ==================
+% Special characters
+% ==================
+\usepackage[fixed]{fontawesome5}
+
 % ====================
 % Macros
 % ====================
@@ -91,6 +97,7 @@
 \linespread{1.05}
 
 % List
+\setlength{\leftmarginii}{1.5cm}
 \makeatletter
 \def\@listi{\leftmargin\leftmarginii
 \topsep 1ex % spacing before
@@ -99,9 +106,37 @@
 \makeatother
 
 % Itemize
-\setbeamertemplate{itemize item}{\raise0.5ex \hbox{\vrule width 0.5ex height 0.5ex}}
+\setbeamertemplate{itemize item}{\footnotesize\faCanadianMapleLeaf}
 \setbeamertemplate{itemize subitem}{\raise0.3ex \hbox{\vrule width 0.5ex height 0.5ex}}
 \setbeamertemplate{itemize subsubitem}{\raise0.2ex \hbox{\vrule width 0.5ex height 0.5ex}}
+
+% Justify itemize
+\makeatletter
+\renewcommand{\itemize}[1][]{%
+  \beamer@ifempty{#1}{}{\def\beamer@defaultospec{#1}}%
+  \ifnum \@itemdepth >2\relax\@toodeep\else
+    \advance\@itemdepth\@ne
+    \beamer@computepref\@itemdepth% sets \beameritemnestingprefix
+    \usebeamerfont{itemize/enumerate \beameritemnestingprefix body}%
+    \usebeamercolor[fg]{itemize/enumerate \beameritemnestingprefix body}%
+    \usebeamertemplate{itemize/enumerate \beameritemnestingprefix body begin}%
+    \list
+      {\usebeamertemplate{itemize \beameritemnestingprefix item}}
+      {\def\makelabel##1{%
+          {%
+            \hss\llap{{%
+                \usebeamerfont*{itemize \beameritemnestingprefix item}%
+                \usebeamercolor[fg]{itemize \beameritemnestingprefix item}##1}}%
+          }%
+        }%
+      }
+  \fi%
+  \beamer@cramped%
+  \justifying % NEW
+  %\raggedright % ORIGINAL
+  \beamer@firstlineitemizeunskip%
+}
+\makeatother
 
 % Enumerate
 \setbeamertemplate{enumerate item}{\insertenumlabel.}
@@ -146,7 +181,7 @@
           \begin{column}{0.095\paperwidth}
             \begin{center}
               \vskip4ex
-              \includegraphics[width=.7\linewidth]{images/qr.png}
+              \includegraphics[width=.9\linewidth]{images/qr.png}
             \end{center}
           \end{column}
           \begin{column}{0.655\paperwidth}
@@ -180,19 +215,19 @@
 \setbeamertemplate{block begin}
 {
     \begin{beamercolorbox}[colsep*=0ex, dp=2ex, center]{block title}
-        \vskip0pt
+        \vskip-0.35ex
         \usebeamerfont{block title}\insertblocktitle
-        \vskip-1.25ex
+        \vskip-1.75ex
         \begin{beamercolorbox}[colsep=0.025ex]{block separator}\end{beamercolorbox}
     \end{beamercolorbox}
     {\parskip0pt\par}
     \usebeamerfont{block body}
-    \vskip-0.5ex
+    \vskip-0.1ex
     \begin{beamercolorbox}[colsep*=0ex]{block body}
     \justifying
     \begin{adjustwidth}{.5ex}{.5ex}
     \setlength{\parskip}{1ex}
-    \vskip-2ex
+    \vskip-2.5ex
 }
 \setbeamertemplate{block end}
 {
@@ -200,26 +235,26 @@
     \vskip.5ex
     \end{beamercolorbox}
     \vskip0pt
-    \vspace*{1ex}
+    \vspace*{0.75ex}
 }
 
 % Alert Block
 \setbeamertemplate{block alerted begin}
 {
     \begin{beamercolorbox}[colsep*=0ex, dp=2ex, center]{block alerted title}
-        \vskip0.5ex
+        \vskip-0.35ex
         \usebeamerfont{block title}\insertblocktitle
-        \vskip-1.25ex
+        \vskip-1.75ex
         \begin{beamercolorbox}[colsep=0.025ex]{block alerted separator}\end{beamercolorbox}
     \end{beamercolorbox}
     {\parskip0pt\par}
     \usebeamerfont{block body}
-    \vskip-0.5ex
+    \vskip-0.1ex
     \begin{beamercolorbox}[colsep*=0ex]{block alerted body}
     \justifying
     \begin{adjustwidth}{0.5ex}{0.5ex}
     \setlength{\parskip}{1ex}
-    \vskip-2ex
+    \vskip-2.5ex
 }
 \setbeamertemplate{block alerted end}
 {
@@ -227,7 +262,7 @@
     \vskip0.5ex
     \end{beamercolorbox}
     \vskip0pt
-    \vspace*{1ex}
+    \vspace*{0.75ex}
 }
 
 %Footline

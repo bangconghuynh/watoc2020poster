@@ -1,0 +1,357 @@
+\pgfplotstableread[col sep=comma]{data/C/symden.refpot.reg/0.000.zplot_a_trunc.csv}\Cpotzeroa
+\pgfplotstableread[col sep=comma]{data/C/symden.refpot.reg/0.000.zplot_b_trunc.csv}\Cpotzerob
+\pgfplotstableread[col sep=comma]{data/C/symden.refpot.reg/0.250.zplot_a_trunc.csv}\Cpotquara
+\pgfplotstableread[col sep=comma]{data/C/symden.refpot.reg/0.250.zplot_b_trunc.csv}\Cpotquarb
+\pgfplotstableread[col sep=comma]{data/C/symden.refpot.reg/0.500.zplot_a_trunc.csv}\Cpothalfa
+\pgfplotstableread[col sep=comma]{data/C/symden.refpot.reg/0.500.zplot_b_trunc.csv}\Cpothalfb
+\pgfplotstableread[col sep=comma]{data/C/symden.refpot.reg/0.750.zplot_a_trunc.csv}\Cpottquara
+\pgfplotstableread[col sep=comma]{data/C/symden.refpot.reg/0.750.zplot_b_trunc.csv}\Cpottquarb
+\pgfplotstableread[col sep=comma]{data/C/symden.refpot.reg/1.000.zplot_a_trunc.csv}\Cpotfulla
+\pgfplotstableread[col sep=comma]{data/C/symden.refpot.reg/1.000.zplot_b_trunc.csv}\Cpotfullb
+%
+\pgfplotstableread[col sep=comma]{data/O/symden.refpot.reg/0.000.zplot_a_trunc.csv}\Opotzeroa
+\pgfplotstableread[col sep=comma]{data/O/symden.refpot.reg/0.000.zplot_b_trunc.csv}\Opotzerob
+\pgfplotstableread[col sep=comma]{data/O/symden.refpot.reg/0.250.zplot_a_trunc.csv}\Opotquara
+\pgfplotstableread[col sep=comma]{data/O/symden.refpot.reg/0.250.zplot_b_trunc.csv}\Opotquarb
+\pgfplotstableread[col sep=comma]{data/O/symden.refpot.reg/0.500.zplot_a_trunc.csv}\Opothalfa
+\pgfplotstableread[col sep=comma]{data/O/symden.refpot.reg/0.500.zplot_b_trunc.csv}\Opothalfb
+\pgfplotstableread[col sep=comma]{data/O/symden.refpot.reg/0.750.zplot_a_trunc.csv}\Opottquara
+\pgfplotstableread[col sep=comma]{data/O/symden.refpot.reg/0.750.zplot_b_trunc.csv}\Opottquarb
+\pgfplotstableread[col sep=comma]{data/O/symden.refpot.reg/1.000.zplot_a_trunc.csv}\Opotfulla
+\pgfplotstableread[col sep=comma]{data/O/symden.refpot.reg/1.000.zplot_b_trunc.csv}\Opotfullb
+
+\begin{tikzpicture}[%
+  baseline=(potCO c1r1.north),
+]
+  % Main plot
+  \begin{groupplot}[
+    % =============
+    % Group configs
+    % =============
+    group style={
+      group name=potCO,
+      group size=2 by 2,
+      xlabels at=edge bottom,
+      xticklabels at=edge bottom,
+      ylabels at=edge left,
+      yticklabels at=edge left,
+      vertical sep=1.5cm,
+      horizontal sep=1.5cm,
+    },
+    % =================
+    % Groupplot general
+    % =================
+    width=.26\colwidth,
+    height=15cm,
+    scale only axis=true,
+    cycle list name=coloronly,
+    unbounded coords=jump,
+    % ==================
+    % Group title format
+    % ==================
+    title style={yshift=-.5ex, font={\normalsize}},
+    % =================
+    % Group axis format
+    % =================
+    % -----------------
+    % Group axis scales
+    % -----------------
+    xmin=0, xmax=5,
+    ymin=-7, ymax=0.5,
+    % -----------------
+    % Group axis labels
+    % -----------------
+    xlabel={$r / \si{\bohr}$},
+    label style={font=\small},
+    xlabel style={align=center},
+    every axis y label/.append style={at={(0, 0.5)}, yshift=1.1em},
+    % -----------------
+    % Group tick labels
+    % -----------------
+    tick label style={font=\footnotesize},
+    x tick label style=
+    {
+      /pgf/number format/.cd,
+      fixed,
+      fixed zerofill,
+      precision=1,
+      /tikz/.cd
+    },
+    y tick label style=
+    {
+      /pgf/number format/.cd,
+      fixed,
+      fixed zerofill,
+      precision=0,
+      /tikz/.cd
+    },
+%    every y tick scale label/.style={%
+%      at={(yticklabel cs:1)},%
+%      anchor=east,%
+%      inner sep=1pt%
+%    },
+    % ------------------
+    % Group tick configs
+    % ------------------
+    xtick pos=left,
+    xtick align=outside,
+    minor x tick num=1,
+    xtick distance=1,
+    ytick align=outside,
+    ytick pos=left,
+    minor y tick num=1,
+    ytick distance=1,
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  ]
+    % =====
+    % =====
+    % Alpha
+    % =====
+    % =====
+    % ------
+    % Carbon
+    % ------
+    \nextgroupplot[
+      % ===============
+      % Subplot general
+      % ===============
+      align=center,
+      ylabel={$\gls*{op:pot1e}[_{\lambda}^{\symup{M, xc}}] / \si{\atomicunits}$},
+      % ====================
+      % Subplot title format
+      % ====================
+      title={Carbon},
+      % ===================
+      % Subplot axis format
+      % ===================
+      % -------------------
+      % Subplot axis scales
+      % -------------------
+      % -------------------
+      % Subplot axis labels
+      % -------------------
+      % -------------------
+      % Subplot tick labels
+      % -------------------
+      % --------------------
+      % Subplot tick configs
+      % --------------------
+      % ===============
+      % Subplot legends
+      % ===============
+      reverse legend,
+      legend style={
+        at={(rel axis cs:0.95, 0.5)},
+        anchor=east,
+        legend cell align=left,
+        legend style={font=\footnotesize},
+      },
+      % ===================
+      % Subplot annotations
+      % ===================
+      after end axis/.code={%
+        \node[anchor=south east] at (rel axis cs:1, 0) {$\alpha$};
+      },
+    ]
+      \addplot+[%
+        line width=0.87mm,%
+        mark=none,%
+      ] table[x={z}, y={vxcpotbas}]{\Cpotzeroa};
+      \addlegendentry{$\lambda = 0.00$}
+      \addplot+[%
+        line width=0.87mm,%
+        mark=none,%
+      ] table[x={z}, y={vxcpotbas}]{\Cpotquara};
+      \addlegendentry{$\lambda = 0.25$}
+      \addplot+[%
+        line width=0.87mm,%
+        mark=none,%
+      ] table[x={z}, y={vxcpotbas}]{\Cpothalfa};
+      \addlegendentry{$\lambda = 0.50$}
+      \addplot+[%
+        line width=0.87mm,%
+        mark=none,%
+      ] table[x={z}, y={vxcpotbas}]{\Cpottquara};
+      \addlegendentry{$\lambda = 0.75$}
+      \addplot+[%
+        line width=0.87mm,%
+        mark=none,%
+      ] table[x={z}, y={vxcpotbas}]{\Cpotfulla};
+      \addlegendentry{$\lambda = 1.00$}
+    % ------
+    % Oxygen
+    % ------
+    \nextgroupplot[
+      % ===============
+      % Subplot general
+      % ===============
+      align=center,
+      % ====================
+      % Subplot title format
+      % ====================
+      title={Oxygen},
+      % ===================
+      % Subplot axis format
+      % ===================
+      % -------------------
+      % Subplot axis scales
+      % -------------------
+      % -------------------
+      % Subplot axis labels
+      % -------------------
+      % -------------------
+      % Subplot tick labels
+      % -------------------
+      % --------------------
+      % Subplot tick configs
+      % --------------------
+      % ===============
+      % Subplot legends
+      % ===============
+      % ===================
+      % Subplot annotations
+      % ===================
+      after end axis/.code={%
+        \node[anchor=south east] at (rel axis cs:1, 0) {$\alpha$};
+      },
+    ]
+      \addplot+[%
+        line width=0.87mm,%
+        mark=none,%
+      ] table[x={z}, y={vxcpotbas}]{\Opotzeroa};
+      \addplot+[%
+        line width=0.87mm,%
+        mark=none,%
+      ] table[x={z}, y={vxcpotbas}]{\Opotquara};
+      \addplot+[%
+        line width=0.87mm,%
+        mark=none,%
+      ] table[x={z}, y={vxcpotbas}]{\Opothalfa};
+      \addplot+[%
+        line width=0.87mm,%
+        mark=none,%
+      ] table[x={z}, y={vxcpotbas}]{\Opottquara};
+      \addplot+[%
+        line width=0.87mm,%
+        mark=none,%
+      ] table[x={z}, y={vxcpotbas}]{\Opotfulla};
+    % ====
+    % ====
+    % Beta
+    % ====
+    % ====
+    % ------
+    % Carbon
+    % ------
+    \nextgroupplot[
+      % ===============
+      % Subplot general
+      % ===============
+      align=center,
+      ylabel={$\gls*{op:pot1e}[_{\lambda}^{\symup{M, xc}}] / \si{\atomicunits}$},
+      % ====================
+      % Subplot title format
+      % ====================
+      % ===================
+      % Subplot axis format
+      % ===================
+      % -------------------
+      % Subplot axis scales
+      % -------------------
+      % -------------------
+      % Subplot axis labels
+      % -------------------
+      % -------------------
+      % Subplot tick labels
+      % -------------------
+      % --------------------
+      % Subplot tick configs
+      % --------------------
+      % ===============
+      % Subplot legends
+      % ===============
+      % ===================
+      % Subplot annotations
+      % ===================
+      after end axis/.code={%
+        \node[anchor=south east] at (rel axis cs:1, 0) {$\beta$};
+      },
+    ]
+      \addplot+[%
+        line width=0.87mm,%
+        mark=none,%
+      ] table[x={z}, y={vxcpotbas}]{\Cpotzerob};
+      \addplot+[%
+        line width=0.87mm,%
+        mark=none,%
+      ] table[x={z}, y={vxcpotbas}]{\Cpotquarb};
+      \addplot+[%
+        line width=0.87mm,%
+        mark=none,%
+      ] table[x={z}, y={vxcpotbas}]{\Cpothalfb};
+      \addplot+[%
+        line width=0.87mm,%
+        mark=none,%
+      ] table[x={z}, y={vxcpotbas}]{\Cpottquarb};
+      \addplot+[%
+        line width=0.87mm,%
+        mark=none,%
+      ] table[x={z}, y={vxcpotbas}]{\Cpotfullb};
+    % ------
+    % Oxygen
+    % ------
+    \nextgroupplot[
+      % ===============
+      % Subplot general
+      % ===============
+      align=center,
+      % ====================
+      % Subplot title format
+      % ====================
+      % ===================
+      % Subplot axis format
+      % ===================
+      % -------------------
+      % Subplot axis scales
+      % -------------------
+      % -------------------
+      % Subplot axis labels
+      % -------------------
+      % -------------------
+      % Subplot tick labels
+      % -------------------
+      % --------------------
+      % Subplot tick configs
+      % --------------------
+      % ===============
+      % Subplot legends
+      % ===============
+      % ===================
+      % Subplot annotations
+      % ===================
+      after end axis/.code={%
+        \node[anchor=south east] at (rel axis cs:1, 0) {$\beta$};
+      },
+    ]
+      \addplot+[%
+        line width=0.87mm,%
+        mark=none,%
+      ] table[x={z}, y={vxcpotbas}]{\Opotzerob};
+      \addplot+[%
+        line width=0.87mm,%
+        mark=none,%
+      ] table[x={z}, y={vxcpotbas}]{\Opotquarb};
+      \addplot+[%
+        line width=0.87mm,%
+        mark=none,%
+      ] table[x={z}, y={vxcpotbas}]{\Opothalfb};
+      \addplot+[%
+        line width=0.87mm,%
+        mark=none,%
+      ] table[x={z}, y={vxcpotbas}]{\Opottquarb};
+      \addplot+[%
+        line width=0.87mm,%
+        mark=none,%
+      ] table[x={z}, y={vxcpotbas}]{\Opotfullb};
+  \end{groupplot}
+\end{tikzpicture}

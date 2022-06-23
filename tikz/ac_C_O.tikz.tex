@@ -1,0 +1,531 @@
+\pgfplotstableread[col sep=comma]{data/C/nosymden.norefpot.noreg/W.global.csv}\CWrhobad
+\pgfplotstableread[col sep=comma]{data/C/nosymden.norefpot.noreg/l2norm.csv}\CWlnormbad
+\pgfplotstableread[col sep=comma]{data/C/nosymden.norefpot.noreg/frontier_gap.csv}\CWfrontierbad
+\pgfplotstableread[col sep=comma]{data/C/symden.refpot.reg/W.global.csv}\CWrhogood
+\pgfplotstableread[col sep=comma]{data/C/symden.refpot.reg/l2norm.csv}\CWlnormgood
+\pgfplotstableread[col sep=comma]{data/C/symden.refpot.reg/frontier_gap.csv}\CWfrontiergood
+%
+\pgfplotstableread[col sep=comma]{data/O/nosymden.norefpot.noreg/W.global.csv}\OWrhobad
+\pgfplotstableread[col sep=comma]{data/O/nosymden.norefpot.noreg/l2norm.csv}\OWlnormbad
+\pgfplotstableread[col sep=comma]{data/O/nosymden.norefpot.noreg/frontier_gap.csv}\OWfrontierbad
+\pgfplotstableread[col sep=comma]{data/O/symden.refpot.reg/W.global.csv}\OWrhogood
+\pgfplotstableread[col sep=comma]{data/O/symden.refpot.reg/l2norm.csv}\OWlnormgood
+\pgfplotstableread[col sep=comma]{data/O/symden.refpot.reg/frontier_gap.csv}\OWfrontiergood
+
+\begin{tikzpicture}[%
+  baseline=(acCO c1r1.north),
+]
+  % Main plot
+  \begin{groupplot}[
+    % =============
+    % Group configs
+    % =============
+    group style={
+      group name=acCO,
+      group size=2 by 3,
+      xlabels at=edge bottom,
+      xticklabels at=edge bottom,
+      ylabels at=edge left,
+      yticklabels at=edge left,
+      vertical sep=1.5cm,
+      horizontal sep=1.8cm,
+    },
+    % =================
+    % Groupplot general
+    % =================
+    width=.37\colwidth,
+    scale only axis=true,
+    cycle list name=coloronly,
+    unbounded coords=jump,
+    % ==================
+    % Group title format
+    % ==================
+    title style={yshift=-.5ex, font={\normalsize}},
+    % =================
+    % Group axis format
+    % =================
+    % -----------------
+    % Group axis scales
+    % -----------------
+    xmin=0, xmax=1,
+    % -----------------
+    % Group axis labels
+    % -----------------
+    xlabel={$\lambda$},
+    label style={font=\small},
+    xlabel style={align=center},
+    every axis y label/.append style={at={(0, 0.5)}, yshift=2.1em},
+    % -----------------
+    % Group tick labels
+    % -----------------
+    tick label style={font=\footnotesize},
+    x tick label style=
+    {
+      /pgf/number format/.cd,
+      fixed,
+      fixed zerofill,
+      precision=1,
+      /tikz/.cd
+    },
+%    every y tick scale label/.style={%
+%      at={(yticklabel cs:1)},%
+%      anchor=east,%
+%      inner sep=1pt%
+%    },
+    % ------------------
+    % Group tick configs
+    % ------------------
+    xtick pos=left,
+    xtick align=outside,
+    minor x tick num=1,
+    xtick distance=0.2,
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  ]
+    % ==
+    % ==
+    % Wc
+    % ==
+    % ==
+    % ------
+    % Carbon
+    % ------
+    \nextgroupplot[
+      % ===============
+      % Subplot general
+      % ===============
+      align=center,
+      ylabel={$\symcal{W}_{\lambda}(\gls*{den:ground}[^{\symup{M}}_{\lambda}]) - \symcal{W}_{0}(\gls*{den:ground}[^{\symup{M}}_{0}]) / \si{\hartree}$},
+      height=15cm,
+      % ====================
+      % Subplot title format
+      % ====================
+      title={Carbon, M = (CCSD, aug-cc-pVTZ)},
+      % ===================
+      % Subplot axis format
+      % ===================
+      % -------------------
+      % Subplot axis scales
+      % -------------------
+      ymin=-0.45, ymax=0,
+      % -------------------
+      % Subplot axis labels
+      % -------------------
+      y tick label style=
+      {
+        /pgf/number format/.cd,
+        fixed,
+        fixed zerofill,
+        precision=2,
+        /tikz/.cd
+      },
+      % -------------------
+      % Subplot tick labels
+      % -------------------
+      % --------------------
+      % Subplot tick configs
+      % --------------------
+      ytick align=outside,
+      ytick pos=left,
+      minor y tick num=1,
+%      ytick distance=0.05,
+      % ===============
+      % Subplot legends
+      % ===============
+      legend pos=south west,
+      legend style={
+        legend cell align=left,
+        legend style={font=\footnotesize},
+      },
+      % ===================
+      % Subplot annotations
+      % ===================
+      after end axis/.code={%
+        \node[scale=0.6, anchor=north east, outer sep=0.5ex] at (rel axis cs:1, 1) {%
+          $\begin{alignedat}{3}
+            E_{\symup{c}}(\gls*{den:ground}[^{\symup{M}}_{1}])
+            &\approx \SI{-138.126}{\milli\hartree} &&\ \textrm{(integrated)}\\
+            &\approx \SI{-138.076}{\milli\hartree} &&\ \textrm{(direct)}
+          \end{alignedat}$
+        };
+        \draw[->, Blue, rounded corners=4pt, line width=0.8mm] (axis cs:0.105, -0.04) |- (axis cs:0.03, -0.06) node [scale=0.6, midway, inner sep=1pt, yshift=-1cm, anchor=north, draw=blue, draw opacity=0.8, cross out] {PSVR};
+      },
+    ]
+      \addplot[%
+        name path=Wc,%
+        Red,%
+        line width=1.1mm,%
+        mark=none,%
+      ] table[x={lambda}, y={Wc}]{\CWrhogood};
+      \addlegendentry{Totally symmetric ensemble density}
+      \addplot[%
+        Blue,%
+        line width=1.1mm,%
+        loosely dotted,
+        mark=none,%
+        restrict x to domain=0.105:1,
+      ] table[x={lambda}, y={Wc}]{\CWrhobad};
+      \addlegendentry{Degenerate pure-state density}
+      \addplot[name path=Wx, gray, domain=0:1, samples=2] {0};
+      \addplot[Crimson, opacity=.3] fill between [of=Wc and Wx];
+    % ------
+    % Oxygen
+    % ------
+    \nextgroupplot[
+      % ===============
+      % Subplot general
+      % ===============
+      align=center,
+      height=15cm,
+      % ====================
+      % Subplot title format
+      % ====================
+      title={Oxygen, M = (CCSD, aug-cc-pVTZ)},
+      % ===================
+      % Subplot axis format
+      % ===================
+      % -------------------
+      % Subplot axis scales
+      % -------------------
+      ymin=-0.45, ymax=0,
+      % -------------------
+      % Subplot axis labels
+      % -------------------
+      y tick label style=
+      {
+        /pgf/number format/.cd,
+        fixed,
+        fixed zerofill,
+        precision=2,
+        /tikz/.cd
+      },
+      % -------------------
+      % Subplot tick labels
+      % -------------------
+      % --------------------
+      % Subplot tick configs
+      % --------------------
+      ytick align=outside,
+      ytick pos=left,
+      minor y tick num=1,
+%      ytick distance=0.05,
+      % ===============
+      % Subplot legends
+      % ===============
+      % ===================
+      % Subplot annotations
+      % ===================
+      after end axis/.code={%
+        \node[scale=0.6, anchor=north east, outer sep=0.5ex] at (rel axis cs:1, 1) {%
+          $\begin{alignedat}{3}
+            E_{\symup{c}}(\gls*{den:ground}[^{\symup{M}}_{1}])
+            &\approx \SI{-221.285}{\milli\hartree} &&\ \textrm{(integrated)}\\
+            &\approx \SI{-221.143}{\milli\hartree} &&\ \textrm{(direct)}
+          \end{alignedat}$};
+          \draw[->, Blue, rounded corners=4pt, line width=0.8mm] (axis cs:0.096, -0.06) |- (axis cs:0.03, -0.08) node [scale=0.6, midway, inner sep=1pt, yshift=-1cm, anchor=north, draw=blue, draw opacity=0.8, cross out] {PSVR};
+      },
+    ]
+      \addplot[%
+        name path=Wc,%
+        Red,%
+        line width=1.1mm,%
+        mark=none,%
+      ] table[x={lambda}, y={Wc}]{\OWrhogood};
+      \addplot[name path=Wx, gray, domain=0:1, samples=2] {0};
+      \addplot[Crimson, opacity=.3] fill between [of=Wc and Wx];
+      \addplot[%
+        Blue,%
+        line width=1.1mm,%
+        loosely dotted,
+        mark=none,%
+        restrict x to domain=0.095:1,
+      ] table[x={lambda}, y={Wc}]{\OWrhobad};
+    % =============
+    % L2 norm error
+    % =============
+    % ------
+    % Carbon
+    % ------
+    \nextgroupplot[
+      % ===============
+      % Subplot general
+      % ===============
+      align=center,
+      ylabel={$\lVert \gls*{den:ground}^{\symup{M}}_{\lambda} - \gls*{den:ground}^{\symup{M}}_{1} \rVert_2$},
+      height=5cm,
+      % ====================
+      % Subplot title format
+      % ====================
+      % ===================
+      % Subplot axis format
+      % ===================
+      % -------------------
+      % Subplot axis scales
+      % -------------------
+      ymin=1e-7, ymax=1e-1,
+      ymode=log,
+      % -------------------
+      % Subplot axis labels
+      % -------------------
+%      y tick label style={%
+%        /pgf/number format/.cd,
+%        fixed,
+%        fixed zerofill,
+%        precision=1,
+%        /tikz/.cd,
+%      },
+      % -------------------
+      % Subplot tick labels
+      % -------------------
+      % --------------------
+      % Subplot tick configs
+      % --------------------
+      ytick align=outside,
+      ytick pos=left,
+      minor y tick num=1,
+%      ytick distance=0.5e-5,
+      % ===============
+      % Subplot legends
+      % ===============
+      % ===================
+      % Subplot annotations
+      % ===================
+      after end axis/.code={%
+%        \node[scale=.75, anchor=north] at (rel axis cs:0.0, -0.5) {$\symcal{E}_{\lambda} = \int \gls*{op:pot1e}_{\symup{ext}} (\gls*{den:gen}_{\lambda} - \gls*{den:gen}) \ \D\gls*{bas:spatialcoord}$};
+      },
+    ]
+      \addplot[%
+        Red,%
+        line width=1.1mm,%
+        mark=none,%
+      ] table[x={lambda}, y={l2norm}]{\CWlnormgood};
+      \addplot[%
+        Blue,%
+        line width=1.1mm,%
+        loosely dotted,
+        mark=none,%
+        restrict x to domain=0.105:1,%
+      ] table[x={lambda}, y={l2norm}]{\CWlnormbad};
+    % ------
+    % Oxygen
+    % ------
+    \nextgroupplot[
+      % ===============
+      % Subplot general
+      % ===============
+      align=center,
+      height=5cm,
+      % ====================
+      % Subplot title format
+      % ====================
+      % ===================
+      % Subplot axis format
+      % ===================
+      % -------------------
+      % Subplot axis scales
+      % -------------------
+      ymin=1e-7, ymax=1e-1,
+      ymode=log,
+      % -------------------
+      % Subplot axis labels
+      % -------------------
+%      y tick label style={%
+%        /pgf/number format/.cd,
+%        fixed,
+%        fixed zerofill,
+%        precision=1,
+%        /tikz/.cd,
+%      },
+      % -------------------
+      % Subplot tick labels
+      % -------------------
+      % --------------------
+      % Subplot tick configs
+      % --------------------
+      ytick align=outside,
+      ytick pos=left,
+      minor y tick num=1,
+%      ytick distance=0.5e-5,
+      % ===============
+      % Subplot legends
+      % ===============
+      % ===================
+      % Subplot annotations
+      % ===================
+      after end axis/.code={%
+%        \node[scale=.75, anchor=north] at (rel axis cs:0.0, -0.5) {$\symcal{E}_{\lambda} = \int \gls*{op:pot1e}_{\symup{ext}} (\gls*{den:gen}_{\lambda} - \gls*{den:gen}) \ \D\gls*{bas:spatialcoord}$};
+      },
+    ]
+      \addplot[%
+        Red,%
+        line width=1.1mm,%
+        mark=none,%
+      ] table[x={lambda}, y={l2norm}]{\OWlnormgood};
+      \addplot[%
+        Blue,%
+        line width=1.1mm,%
+        loosely dotted,
+        mark=none,%
+        restrict x to domain=0.095:1,%
+      ] table[x={lambda}, y={l2norm}]{\OWlnormbad};
+    % =============
+    % Frontier gaps
+    % =============
+    % ------
+    % Carbon
+    % ------
+    \nextgroupplot[
+      % ===============
+      % Subplot general
+      % ===============
+      align=center,
+      ylabel={HOMO--LUMO gap / \si{\hartree}},
+      height=8.5cm,
+      % ====================
+      % Subplot title format
+      % ====================
+      title={\footnotesize $[\ce{He}]\ 2s^2 2p^2$ config., Hartree--Fock reference},
+      title style={yshift=-0.5ex},
+      % ===================
+      % Subplot axis format
+      % ===================
+      % -------------------
+      % Subplot axis scales
+      % -------------------
+      ymin=0, ymax=0.8,
+      % -------------------
+      % Subplot axis labels
+      % -------------------
+      y tick label style=
+      {
+        /pgf/number format/.cd,
+        fixed,
+        fixed zerofill,
+        precision=1,
+        /tikz/.cd,
+      },
+      % -------------------
+      % Subplot tick labels
+      % -------------------
+      % --------------------
+      % Subplot tick configs
+      % --------------------
+      ytick align=outside,
+      ytick pos=left,
+      minor y tick num=1,
+      ytick distance=0.2,
+      % ===============
+      % Subplot legends
+      % ===============
+      % ===================
+      % Subplot annotations
+      % ===================
+      after end axis/.code={%
+        \node[scale=.5, anchor=north west, inner sep=0pt] at (axis cs:0.6, 0.23) {$\alpha2p^{\symup{occ}}$---$\alpha2p^{\symup{vir}}$};
+        \node[scale=.5, anchor=south east, inner sep=0pt] at (axis cs:0.6, 0.52) {$\beta2s^{\symup{occ}}$---$\beta2p^{\symup{vir}}$};
+        \draw[<-, line width=0.8mm, DarkGreen] (axis cs:0.105, -0.02) -- ++(axis direction cs:0, -0.15) node[align=center, scale=0.6, anchor=north] {premature\\$\alpha$ HOMO--LUMO degeneracy};
+      },
+    ]
+      \addplot[%
+        Red,%
+        line width=1.1mm,%
+        mark=none,%
+      ] table[x={lambda}, y={a}]{\CWfrontiergood};
+      \addplot[%
+        Red!60!white,%
+        line width=1.1mm,%
+        mark=none,%
+      ] table[x={lambda}, y={b}]{\CWfrontiergood};
+      \addplot[%
+        Blue,%
+        line width=1.1mm,%
+        mark=none,%
+        loosely dotted,%
+        restrict x to domain=0.105:1,
+      ] table[x={lambda}, y={a}]{\CWfrontierbad};
+      \addplot[%
+        Blue!60!white,%
+        line width=1.1mm,%
+        mark=none,%
+        loosely dotted,%
+        restrict x to domain=0.105:1,
+      ] table[x={lambda}, y={b}]{\CWfrontierbad};
+    % ------
+    % Oxygen
+    % ------
+    \nextgroupplot[
+      % ===============
+      % Subplot general
+      % ===============
+      align=center,
+      height=8.5cm,
+      % ====================
+      % Subplot title format
+      % ====================
+      title={\footnotesize $[\ce{He}]\ 2s^2 2p^4$ config., Hartree--Fock reference},
+      title style={yshift=-0.5ex},
+      % ===================
+      % Subplot axis format
+      % ===================
+      % -------------------
+      % Subplot axis scales
+      % -------------------
+      ymin=0, ymax=0.8,
+      % -------------------
+      % Subplot axis labels
+      % -------------------
+      y tick label style=
+      {
+        /pgf/number format/.cd,
+        fixed,
+        fixed zerofill,
+        precision=1,
+        /tikz/.cd,
+      },
+      % -------------------
+      % Subplot tick labels
+      % -------------------
+      % --------------------
+      % Subplot tick configs
+      % --------------------
+      ytick align=outside,
+      ytick pos=left,
+      minor y tick num=1,
+      ytick distance=0.2,
+      % ===============
+      % Subplot legends
+      % ===============
+      % ===================
+      % Subplot annotations
+      % ===================
+      after end axis/.code={%
+        \node[scale=.5, anchor=south east, inner sep=0pt] at (axis cs:0.4, 0.60) {$\alpha2p^{\symup{occ}}$---$\alpha3s^{\symup{vir}}$};
+        \node[scale=.5, anchor=north west, inner sep=0pt] at (axis cs:0.4, 0.19) {$\beta2p^{\symup{occ}}$---$\beta2p^{\symup{vir}}$};
+        \draw[<-, line width=0.8mm, DarkGreen] (axis cs:0.096, -0.02) -- ++(axis direction cs:0, -0.15) node[align=center, scale=0.6, anchor=north] {premature\\$\beta$ HOMO--LUMO degeneracy};
+      },
+    ]
+      \addplot[%
+        Red,%
+        line width=1.1mm,%
+        mark=none,%
+      ] table[x={lambda}, y={a}]{\OWfrontiergood};
+      \addplot[%
+        Red!60!white,%
+        line width=1.1mm,%
+        mark=none,%
+      ] table[x={lambda}, y={b}]{\OWfrontiergood};
+      \addplot[%
+        Blue,%
+        line width=1.1mm,%
+        mark=none,%
+        loosely dotted,%
+        restrict x to domain=0.095:1,
+      ] table[x={lambda}, y={a}]{\OWfrontierbad};
+      \addplot[%
+        Blue!60!white,%
+        line width=1.1mm,%
+        mark=none,%
+        loosely dotted,%
+        restrict x to domain=0.095:1,
+      ] table[x={lambda}, y={b}]{\OWfrontierbad};
+  \end{groupplot}
+\end{tikzpicture}
